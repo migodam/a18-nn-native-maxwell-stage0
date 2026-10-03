@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "sealed_original_files_rehashed": 977,
+  "included_source_files": 543,
+  "verbatim_files": 502,
+  "metadata_projected_files": 41,
+  "derived_arrays_byte_preserved": 295,
+  "three_pdf_tex_pairs_byte_preserved": true,
+  "original_scientific_outputs_unchanged": true,
+  "public_replay_status": "PASS",
+  "public_replot_status": "PASS",
+  "private_path_npz_scan": "PASS",
+  "publishing_training_or_new_physics": false
+}

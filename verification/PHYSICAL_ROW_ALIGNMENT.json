@@ -1,0 +1,10 @@
+{
+  "gaussian_physical_rows_equal": true,
+  "physical_points_shape": [
+    1728,
+    3
+  ],
+  "common_measurement_real_dimension": 1536,
+  "illumination_count": 6,
+  "scope": "SAME_ARCHIVED_RECEIVER_CONFIGURATION_AND_PACKING; projected S changes with Q"
+}

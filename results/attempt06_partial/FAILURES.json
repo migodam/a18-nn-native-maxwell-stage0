@@ -1,0 +1,37 @@
+[
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb#finalists",
+    "index": 2,
+    "relative_residual": 1.0309669993604779e-10,
+    "recovery": "UPSTREAM_TORCH_CPU_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb#finalists",
+    "index": 5,
+    "relative_residual": 1.0300104411221311e-10,
+    "recovery": "UPSTREAM_TORCH_CPU_SAME_GATE"
+  },
+  {
+    "stage": "VECTOR_REDUCED_ENDPOINT",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "query_id": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb",
+    "move_index": 877
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "2014/late/k4#receiver",
+    "index": 0,
+    "relative_residual": 2.008189338389571e-10,
+    "recovery": "UPSTREAM_TORCH_CPU_SAME_GATE"
+  },
+  {
+    "stage": "RUNNER",
+    "reason": "receiver CPU endpoint NORMAL_RESIDUAL_FAILED",
+    "traceback": "Traceback (most recent call last):\n  File \"a18://code/run_stage0.py\", line 384, in <module>\n    try:main()\n        ~~~~^^\n  File \"a18://code/run_stage0.py\", line 328, in main\n    if rx['status'][0]!='OK':raise ValueError('receiver CPU endpoint '+rx['status'][0])\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: receiver CPU endpoint NORMAL_RESIDUAL_FAILED\n"
+  }
+]

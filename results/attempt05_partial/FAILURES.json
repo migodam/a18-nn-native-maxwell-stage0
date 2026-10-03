@@ -1,0 +1,15 @@
+[
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb#finalists",
+    "index": 2,
+    "relative_residual": 1.0309669993604779e-10,
+    "recovery": "UPSTREAM_DIRECT_BRANCH_SAME_GATE"
+  },
+  {
+    "stage": "RUNNER",
+    "reason": "'EndpointBatch' object has no attribute 'PB'",
+    "traceback": "Traceback (most recent call last):\n  File \"a18://code/run_stage0.py\", line 381, in <module>\n    try:main()\n        ~~~~^^\n  File \"a18://code/run_stage0.py\", line 366, in main\n    w=time.perf_counter();c=time.process_time();vector_labels(cell,ctx,engine,query,selected,rows,ref)\n                                                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"a18://code/run_stage0.py\", line 210, in vector_labels\n    evaluated=evaluate_cpu(engine,np.stack([orth(ctx.atoms[:,r['ids']]) for r in wanted]),qid+'#finalists') if wanted else None\n              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"a18://code/run_stage0.py\", line 87, in evaluate_cpu\n    direct=EndpointBatch(engine.L,engine.S,engine.PB,engine.r,engine.ell,engine.lam,device='cpu',batch_size=1,branch='direct')\n                                           ^^^^^^^^^\nAttributeError: 'EndpointBatch' object has no attribute 'PB'. Did you mean: 'P'?\n"
+  }
+]

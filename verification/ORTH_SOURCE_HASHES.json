@@ -1,0 +1,18 @@
+[
+  {
+    "module": "operators",
+    "path": "original-a17://vendor/Gaussian/A16/CURRENT_SELECTION_R1/code/operators.py",
+    "sha256": "09c7d7285a7d238cbeb5c8c376c185e2f055c26b6d08e4c6c68122691552f9c9",
+    "expected": "09c7d7285a7d238cbeb5c8c376c185e2f055c26b6d08e4c6c68122691552f9c9",
+    "pass_hash": true,
+    "used": "READ_ONLY_ORTH_CONVENTION; module not imported"
+  },
+  {
+    "module": "pairtsom_adapter",
+    "path": "original-a17://vendor/Gaussian/A14/src/pairtsom_adapter.py",
+    "sha256": "b554e7873012ef1e8bf37e68efb2869c89217de09f1cdf21ee0974ffe0d31604",
+    "expected": "b554e7873012ef1e8bf37e68efb2869c89217de09f1cdf21ee0974ffe0d31604",
+    "pass_hash": true,
+    "used": "READ_ONLY_ORTH_CONVENTION; module not imported"
+  }
+]

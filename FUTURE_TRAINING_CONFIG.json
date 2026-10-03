@@ -1,0 +1,62 @@
+{
+  "enabled": false,
+  "status": "CONFIG_ONLY_NO_TRAINING_AUTHORIZED_THIS_STAGE",
+  "source_commit": "56097653e6a814399581c3759fc3e3e8f0c2284c",
+  "splits": "A18_SPLITS.json",
+  "A_status": "A_GO_TINY_PILOT",
+  "B_status": "B_DATA_INCOMPLETE",
+  "common_input_levels": [
+    "F0",
+    "F1"
+  ],
+  "forbidden_inputs": [
+    "object_id",
+    "geometry_class",
+    "path",
+    "seed",
+    "fullJ",
+    "Q_true",
+    "truth",
+    "reference_step",
+    "pre-shortlist_child_step",
+    "pre-shortlist_Qhat"
+  ],
+  "shortlist_size": 12,
+  "parameter_cap": 200000,
+  "epoch_cap": 60,
+  "folds": 4,
+  "seeds": [
+    20261002,
+    20261003
+  ],
+  "total_GPU_occupation_cap_s": 7200,
+  "candidate_models": [
+    "shared_mlp",
+    "set_transformer",
+    "gat",
+    "phase_consistent_physics_edge_gnn"
+  ],
+  "main_loss": "listwise incoming utility; teacher=max feasible positive one-swap gain",
+  "auxiliary_loss": "top-m recall, m=4; no-positive query maps to no-op",
+  "all_scalers_fit_train_only": true,
+  "invariance_gates": [
+    "permutation equivariant",
+    "complex phase covariance/invariant actions",
+    "original physical atom ID action consistency"
+  ],
+  "comparison_gates": {
+    "near-contact_min": 0.7,
+    "asymmetric_min": 0.85,
+    "equal_object_mean_min": 0.85,
+    "additional_mean_coverage": 0.05,
+    "equal_quality_max_drop": 0.01,
+    "cost_reduction_target": 2.0
+  },
+  "B_training_enabled": false,
+  "B_requirements": [
+    "legal matched voxel vectors and exact receiver output",
+    "state-conditioned linear-in-direction interface",
+    "output basis crosses margin and cost gates",
+    "selected-finalist calibration and cache refresh account"
+  ]
+}

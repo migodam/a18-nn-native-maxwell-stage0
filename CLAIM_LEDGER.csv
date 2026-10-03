@@ -1,0 +1,19 @@
+claim_id,status,claim,evidence,scope_limit
+C01,VERIFIED_DATA,"36 complete queries, 47712 unique moves, 43108 feasible moves, 5208 incoming labels",results/COUNTS.json,"Four objects, twelve frozen states; moves are correlated"
+C02,REANALYZED,B0 Cov12=0.9689/0.3528/0.9198/0.6589; original short-pool bottleneck reproduced,results/A18_BASELINE_OBJECT_SUMMARY.csv,One-swap dictionary scope
+C03,REANALYZED,B4 anchor top1 capture=0.9960/0.9810/0.9937/0.9883,results/A18_BASELINE_OBJECT_SUMMARY.csv,Ranking quality distinct from pool coverage
+C04,REANALYZED,"B2 Cov12=0.9718/0.5178/0.9852/0.6751, mean0.7875",results/A18_BASELINE_OBJECT_SUMMARY.csv,Fails simultaneous opportunity-elimination gates
+C05,NEGATIVE_RESULT,"B3 mean Cov12=0.6259, below B0 and B2",results/A18_BASELINE_OBJECT_SUMMARY.csv,Fixed receiver-direction addition proxy; no retuning
+C06,OPPORTUNITY_NOT_SUCCESS,Best single frozen cheap baseline mean0.8463; teacher-relative gap0.1537,results/STAGE0_SUMMARY.json,Best random seed is descriptive; no object-wise or query-wise seed oracle
+C07,VERIFIED_LABEL_SCOPE,204 Gaussian measurement vectors plus 1 voxel vector; zero full-current teachers,A18_DEFECT_LABEL_AVAILABILITY.csv,194 voxel matched vectors missing; scalar gains are not vector labels
+C08,REANALYZED,Median tail/direct norm0.3729 smooth and0.4356 near-contact,figures/04_tail_norms.csv,A and U need not be nested; not a monotonic theorem
+C09,EVALUATION_ORACLE,Source sketch rank54 on saved54-dimensional Gaussian gauge; null-tail error<=4.47e-15 relative,results/A18_SOURCE_ORACLE.csv,"State-specific fullJ oracle, not a learned transfer result or full-current label"
+C10,SPLIT_AUDIT,"Fold1 train smooth, test near-contact; reversed smooth results are Fold3 validation",verification/FIT_RECEIPTS.json,Fold0 lacks complete Gaussian training object; no four-object B test
+C11,NEGATIVE_RESULT,B4 held-out POD anchor-tail skip10/18 for ranks8/16/32; uncorrected anchor also10/18; direct defect0/18,results/A18_B_OBJECT_SUMMARY.csv,Projection oracle under tested bases; not a proof excluding all compensation architectures
+C12,DERIVED_COST,Matched single-decision RHS-halving threshold75%; historical multi-round floor59.28%,results/A18_B_OBJECT_SUMMARY.csv,"Excludes refresh, audit and model overhead; no measured acceleration"
+C13,DECISION,A_GO_TINY_PILOT; B_DATA_INCOMPLETE globally; Gaussian primary tested bases have no margin/cost headroom,A18_STAGE0_DECISION.md,Recommendations only; training remains disabled
+C14,IMPLEMENTATION_VERIFIED,"128 fresh non-Hermitian algebra cases PASS, largest identity residual9.69e-16",verification/algebra_results.json,Equivalent newly written tests; original A18 verification source unavailable
+C15,NUMERICAL_REPAIR,16 upstream Woodbury failed units recovered with one residual correction and unchanged1e-10 gate,FAILURES.json,"No jitter, new physical operator, PCG or speed comparison"
+C16,EXECUTION_VERIFIED,"New full-wave RHS0, NN epochs0, new nonlinear trajectories0",results/PROCESS_RESOURCE_RECEIPTS.jsonl,Single computation child; failed attempts retained
+C17,NOVELTY_OPEN,"Minor-current learning, operator correction and derivative compression have prior art",literature/REFERENCE_LEDGER.csv,Search rate limited; no first-ever or global novelty claim
+C18,SOURCE_VERIFIED,Step and frozen gain use saved lambda_total including prior precision plus LM damping; smooth early example0.01001,INPUT_HASHES.json; pinned maxwell_state.py and setup_cost.json,Preserved damped frozen quadratic; not a new undamped or nonlinear objective

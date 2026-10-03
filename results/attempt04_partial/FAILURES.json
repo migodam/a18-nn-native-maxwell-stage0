@@ -1,0 +1,19 @@
+[
+  {
+    "stage": "VECTOR_REDUCED_ENDPOINT",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "query_id": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb",
+    "move_index": 144
+  },
+  {
+    "stage": "VECTOR_REDUCED_ENDPOINT",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "query_id": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb",
+    "move_index": 877
+  },
+  {
+    "stage": "RUNNER",
+    "reason": "receiver CPU endpoint NORMAL_RESIDUAL_FAILED",
+    "traceback": "Traceback (most recent call last):\n  File \"a18://code/run_stage0.py\", line 363, in <module>\n    try:main()\n        ~~~~^^\n  File \"a18://code/run_stage0.py\", line 307, in main\n    if rx['status'][0]!='OK':raise ValueError('receiver CPU endpoint '+rx['status'][0])\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: receiver CPU endpoint NORMAL_RESIDUAL_FAILED\n"
+  }
+]

@@ -1,0 +1,42 @@
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 4, "queries": 1, "labels": 11, "cpu_s": 0.18167500000000003}
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 8, "queries": 2, "labels": 21, "cpu_s": 0.392782}
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 16, "queries": 3, "labels": 32, "cpu_s": 0.5930909999999999}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 4, "queries": 4, "labels": 43, "cpu_s": 0.766378}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 8, "queries": 5, "labels": 55, "cpu_s": 0.9355209999999999}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 16, "queries": 6, "labels": 64, "cpu_s": 1.098735}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 4, "queries": 7, "labels": 77, "cpu_s": 1.2903980000000002}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 8, "queries": 8, "labels": 89, "cpu_s": 1.455842}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 16, "queries": 9, "labels": 101, "cpu_s": 1.6459780000000002}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 4, "queries": 10, "labels": 110, "cpu_s": 1.80226}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 8, "queries": 11, "labels": 122, "cpu_s": 2.037894}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 16, "queries": 12, "labels": 132, "cpu_s": 2.209341}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 4, "queries": 13, "labels": 146, "cpu_s": 2.41669}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 8, "queries": 14, "labels": 157, "cpu_s": 2.573331}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 16, "queries": 15, "labels": 167, "cpu_s": 2.7447280000000003}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 4, "queries": 16, "labels": 181, "cpu_s": 2.9673920000000003}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 8, "queries": 17, "labels": 193, "cpu_s": 3.135968}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 16, "queries": 18, "labels": 204, "cpu_s": 3.321997}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 4, "queries": 19, "labels": 204, "cpu_s": 3.481196}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 8, "queries": 20, "labels": 204, "cpu_s": 3.667179}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 16, "queries": 21, "labels": 204, "cpu_s": 3.837}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 4, "queries": 22, "labels": 204, "cpu_s": 3.995696}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 8, "queries": 23, "labels": 204, "cpu_s": 4.094144999999999}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 16, "queries": 24, "labels": 204, "cpu_s": 4.234227}
+{"event": "query_done", "object_id": 2012, "phase": "late", "k": 4, "queries": 25, "labels": 204, "cpu_s": 4.393117999999999}
+{"event": "query_done", "object_id": 2012, "phase": "late", "k": 8, "queries": 26, "labels": 204, "cpu_s": 4.492004}
+{"event": "query_done", "object_id": 2012, "phase": "late", "k": 16, "queries": 27, "labels": 204, "cpu_s": 4.636029}
+{"event": "query_done", "object_id": 2014, "phase": "early", "k": 4, "queries": 28, "labels": 204, "cpu_s": 4.797211}
+{"event": "query_done", "object_id": 2014, "phase": "early", "k": 8, "queries": 29, "labels": 204, "cpu_s": 4.987952}
+{"event": "query_done", "object_id": 2014, "phase": "early", "k": 16, "queries": 30, "labels": 204, "cpu_s": 5.145225}
+{"event": "query_done", "object_id": 2014, "phase": "middle", "k": 4, "queries": 31, "labels": 204, "cpu_s": 5.309068}
+{"event": "query_done", "object_id": 2014, "phase": "middle", "k": 8, "queries": 32, "labels": 204, "cpu_s": 5.414966}
+{"event": "query_done", "object_id": 2014, "phase": "middle", "k": 16, "queries": 33, "labels": 204, "cpu_s": 5.562323999999999}
+Traceback (most recent call last):
+  File "a18://code/run_stage0.py", line 363, in <module>
+    try:main()
+        ~~~~^^
+  File "a18://code/run_stage0.py", line 307, in main
+    if rx['status'][0]!='OK':raise ValueError('receiver CPU endpoint '+rx['status'][0])
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: receiver CPU endpoint NORMAL_RESIDUAL_FAILED
+

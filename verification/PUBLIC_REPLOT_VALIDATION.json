@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "figures": 4,
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "visual_review": "ALL_FOUR_FRESH_PNGS_INSPECTED_PASS",
+  "tool_sha256": "9db631d5f847e03e44e483055818dbcafd356bc5524507bb9658dc768f030184",
+  "pixel_identity_claim": false,
+  "new_full_wave_rhs": 0,
+  "NN_training_epochs": 0,
+  "new_nonlinear_trajectories": 0,
+  "scope": "PUBLIC CSV REPLOT. ORIGINAL REVIEWED FIGURE BYTES REMAIN UNCHANGED.",
+  "fresh_outputs": [
+    {
+      "name": "01_shortlist_coverage.png",
+      "sha256": "8d6cbc0041ba15b7ab1d472fb8496631c995ee94ee520621a8143f2e0d69ef87"
+    },
+    {
+      "name": "01_shortlist_coverage.svg",
+      "sha256": "ea0b5a6c450b3a8b4a428d425ea42deaa2e956213245e49355fe0394fe05105c"
+    },
+    {
+      "name": "02_query_regret.png",
+      "sha256": "fc9564a32cfe07eb674448f4e2fc08957bfdbf749f63a7c03775aa3b113bc6c1"
+    },
+    {
+      "name": "02_query_regret.svg",
+      "sha256": "c36c3573c048de58f67438a8c5184c50b0188250ee5cc29e99a88f04156a5b41"
+    },
+    {
+      "name": "03_defect_margin_oracle.png",
+      "sha256": "0036b9734ce34b6b9b8045edc56dfdc8cff20f91f4fb52b3852164f5b5764925"
+    },
+    {
+      "name": "03_defect_margin_oracle.svg",
+      "sha256": "c19297b19b3b0d390d49398d7ea5ddeacf496e6b03f8e9cef7ea3fa0add984cd"
+    },
+    {
+      "name": "04_tail_size_and_margin.png",
+      "sha256": "4bc0edaa7cf3ebe02fe6b6a10c5945d3e35b7a4d4c844c87a55cd43861ced53a"
+    },
+    {
+      "name": "04_tail_size_and_margin.svg",
+      "sha256": "7135b1638ded18367598640d77a577d66ab4eb77d4141d5d2e2dbc39a5dc7d39"
+    }
+  ]
+}

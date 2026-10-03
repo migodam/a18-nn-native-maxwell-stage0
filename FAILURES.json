@@ -1,0 +1,130 @@
+[
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb#finalists",
+    "index": 2,
+    "relative_residual": 1.0309669993604779e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "861fc19b1f3bbfb4e4507ca66aae265f92c7e28731ce449a7d318b7df47a88cb#finalists",
+    "index": 5,
+    "relative_residual": 1.0300104411221311e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "2014/late/k4#receiver",
+    "index": 0,
+    "relative_residual": 2.008189338389571e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "f301db3188eab45a9c2462bb694d2235fe2a9ba0a623ec0f9b5f9ab0d58fd1a6#finalists",
+    "index": 6,
+    "relative_residual": 2.550276807190958e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "2014/late/k8#receiver",
+    "index": 0,
+    "relative_residual": 2.681657856760741e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "c21bcf8024c5425fae9a8eadaea24099ff72027305a5c90cc8c9968195105a68#finalists",
+    "index": 2,
+    "relative_residual": 1.23174854535586e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "c21bcf8024c5425fae9a8eadaea24099ff72027305a5c90cc8c9968195105a68#finalists",
+    "index": 3,
+    "relative_residual": 1.9562419694480762e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "c21bcf8024c5425fae9a8eadaea24099ff72027305a5c90cc8c9968195105a68#finalists",
+    "index": 7,
+    "relative_residual": 1.183412801906753e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "c21bcf8024c5425fae9a8eadaea24099ff72027305a5c90cc8c9968195105a68#finalists",
+    "index": 9,
+    "relative_residual": 1.266970310020837e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "2014/late/k16#receiver",
+    "index": 0,
+    "relative_residual": 2.025862450362867e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 0,
+    "relative_residual": 1.965861055619486e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 1,
+    "relative_residual": 3.250655372052462e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 2,
+    "relative_residual": 1.3868382828480968e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 3,
+    "relative_residual": 1.1318478039369895e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 4,
+    "relative_residual": 1.6606836758368803e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  },
+  {
+    "stage": "CPU_WOODBURY_NORMAL_RESIDUAL",
+    "reason": "NORMAL_RESIDUAL_FAILED",
+    "location": "af72f5b007d2d382118a8656837787ad2b7a6164af39a6cd7cda5aa6e30be891#finalists",
+    "index": 7,
+    "relative_residual": 1.1189231529797077e-10,
+    "recovery": "EQUIVALENT_CPU_NORMAL_REFINEMENT_SAME_GATE"
+  }
+]

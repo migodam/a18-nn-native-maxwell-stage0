@@ -1,0 +1,60 @@
+{
+  "object_order": [
+    2001,
+    2007,
+    2012,
+    2014
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "test_object": 2001,
+      "validation_object": 2007,
+      "train_objects": [
+        2012,
+        2014
+      ],
+      "train_queries": 18,
+      "validation_queries": 9,
+      "test_queries": 9
+    },
+    {
+      "fold": 1,
+      "test_object": 2007,
+      "validation_object": 2012,
+      "train_objects": [
+        2001,
+        2014
+      ],
+      "train_queries": 18,
+      "validation_queries": 9,
+      "test_queries": 9
+    },
+    {
+      "fold": 2,
+      "test_object": 2012,
+      "validation_object": 2014,
+      "train_objects": [
+        2001,
+        2007
+      ],
+      "train_queries": 18,
+      "validation_queries": 9,
+      "test_queries": 9
+    },
+    {
+      "fold": 3,
+      "test_object": 2014,
+      "validation_object": 2001,
+      "train_objects": [
+        2007,
+        2012
+      ],
+      "train_queries": 18,
+      "validation_queries": 9,
+      "test_queries": 9
+    }
+  ],
+  "scope": "RETROSPECTIVE_OBJECT_HOLDOUT_NOT_PRISTINE_BLIND_TEST",
+  "all_object_records_share_partition": true
+}

@@ -1,0 +1,164 @@
+[
+  {
+    "fold": 1,
+    "target": "U",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 1.0729164775357655e-15,
+    "addition_relative_error": 5.085278282082704e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 1,
+    "target": "U",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.540529497934939e-16,
+    "addition_relative_error": 2.6939127057677377e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 1,
+    "target": "U",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.575216258078175e-16,
+    "addition_relative_error": 2.7594088262783613e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 1,
+    "target": "A",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 6.916944289754923e-16,
+    "addition_relative_error": 2.557741080045018e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 1,
+    "target": "A",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 6.615404551095866e-16,
+    "addition_relative_error": 2.519959159400907e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 1,
+    "target": "A",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 6.210570912066915e-16,
+    "addition_relative_error": 2.4190959819046544e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "U",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.185566227762991e-16,
+    "addition_relative_error": 3.5983864442890394e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "U",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.183047139948478e-16,
+    "addition_relative_error": 2.5652575179309265e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "U",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.205649008502637e-16,
+    "addition_relative_error": 2.5177855233062667e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "A",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 6.366220094678401e-16,
+    "addition_relative_error": 2.527645182311988e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "A",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.968517873477881e-16,
+    "addition_relative_error": 2.833042969701936e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 2,
+    "target": "A",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.107871464021127e-16,
+    "addition_relative_error": 2.6455874723835686e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "U",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 1.046141953707984e-15,
+    "addition_relative_error": 3.731429245950484e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "U",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 9.238992001470398e-16,
+    "addition_relative_error": 3.680016920649766e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "U",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.916025500248865e-16,
+    "addition_relative_error": 2.769365759183356e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "A",
+    "rank": 8,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.80990219839266e-16,
+    "addition_relative_error": 2.173884942326761e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "A",
+    "rank": 16,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.329752142373391e-16,
+    "addition_relative_error": 2.5106570825850277e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  },
+  {
+    "fold": 3,
+    "target": "A",
+    "rank": 32,
+    "zero_norm": 0.0,
+    "scale_relative_error": 7.24940904265448e-16,
+    "addition_relative_error": 2.5005580922115687e-16,
+    "scope": "FIXED_RIDGE_COMPENSATION_INTERFACE; NO_NN"
+  }
+]

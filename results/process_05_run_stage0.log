@@ -1,0 +1,41 @@
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 4, "queries": 1, "labels": 11, "cpu_s": 0.182428}
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 8, "queries": 2, "labels": 21, "cpu_s": 0.39164}
+{"event": "query_done", "object_id": 2001, "phase": "early", "k": 16, "queries": 3, "labels": 32, "cpu_s": 0.5662710000000001}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 4, "queries": 4, "labels": 43, "cpu_s": 0.7366940000000001}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 8, "queries": 5, "labels": 55, "cpu_s": 0.9055059999999999}
+{"event": "query_done", "object_id": 2001, "phase": "middle", "k": 16, "queries": 6, "labels": 64, "cpu_s": 1.066753}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 4, "queries": 7, "labels": 77, "cpu_s": 1.257291}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 8, "queries": 8, "labels": 89, "cpu_s": 1.420359}
+{"event": "query_done", "object_id": 2001, "phase": "late", "k": 16, "queries": 9, "labels": 101, "cpu_s": 1.604411}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 4, "queries": 10, "labels": 110, "cpu_s": 1.757211}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 8, "queries": 11, "labels": 122, "cpu_s": 1.9899069999999999}
+{"event": "query_done", "object_id": 2007, "phase": "early", "k": 16, "queries": 12, "labels": 132, "cpu_s": 2.1572739999999997}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 4, "queries": 13, "labels": 146, "cpu_s": 2.37073}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 8, "queries": 14, "labels": 157, "cpu_s": 2.5262029999999998}
+{"event": "query_done", "object_id": 2007, "phase": "middle", "k": 16, "queries": 15, "labels": 167, "cpu_s": 2.694276}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 4, "queries": 16, "labels": 181, "cpu_s": 2.8981459999999997}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 8, "queries": 17, "labels": 193, "cpu_s": 3.0628249999999997}
+{"event": "query_done", "object_id": 2007, "phase": "late", "k": 16, "queries": 18, "labels": 204, "cpu_s": 3.242985}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 4, "queries": 19, "labels": 204, "cpu_s": 3.3973449999999996}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 8, "queries": 20, "labels": 204, "cpu_s": 3.581066}
+{"event": "query_done", "object_id": 2012, "phase": "early", "k": 16, "queries": 21, "labels": 204, "cpu_s": 3.7594429999999996}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 4, "queries": 22, "labels": 204, "cpu_s": 3.911574}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 8, "queries": 23, "labels": 204, "cpu_s": 4.007603}
+{"event": "query_done", "object_id": 2012, "phase": "middle", "k": 16, "queries": 24, "labels": 204, "cpu_s": 4.145947}
+{"event": "query_done", "object_id": 2012, "phase": "late", "k": 4, "queries": 25, "labels": 204, "cpu_s": 4.299748}
+{"event": "query_done", "object_id": 2012, "phase": "late", "k": 8, "queries": 26, "labels": 204, "cpu_s": 4.396093}
+Traceback (most recent call last):
+  File "a18://code/run_stage0.py", line 381, in <module>
+    try:main()
+        ~~~~^^
+  File "a18://code/run_stage0.py", line 366, in main
+    w=time.perf_counter();c=time.process_time();vector_labels(cell,ctx,engine,query,selected,rows,ref)
+                                                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "a18://code/run_stage0.py", line 210, in vector_labels
+    evaluated=evaluate_cpu(engine,np.stack([orth(ctx.atoms[:,r['ids']]) for r in wanted]),qid+'#finalists') if wanted else None
+              ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "a18://code/run_stage0.py", line 87, in evaluate_cpu
+    direct=EndpointBatch(engine.L,engine.S,engine.PB,engine.r,engine.ell,engine.lam,device='cpu',batch_size=1,branch='direct')
+                                           ^^^^^^^^^
+AttributeError: 'EndpointBatch' object has no attribute 'PB'. Did you mean: 'P'?
+

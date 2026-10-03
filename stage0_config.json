@@ -1,0 +1,99 @@
+{
+  "schema": "a18.stage0.frozen.v1",
+  "frozen_at": "2026-10-03T02:03:02.767229+00:00",
+  "source_commit": "56097653e6a814399581c3759fc3e3e8f0c2284c",
+  "source_root": "upstream-a17://",
+  "original_root": "original-a17://",
+  "object_order": [
+    2001,
+    2007,
+    2012,
+    2014
+  ],
+  "object_names": {
+    "2001": "smooth",
+    "2007": "near-contact",
+    "2012": "layered",
+    "2014": "asymmetric"
+  },
+  "phases": [
+    "early",
+    "middle",
+    "late"
+  ],
+  "k": [
+    4,
+    8,
+    16
+  ],
+  "shortlist_size": 12,
+  "random_seeds": [
+    20261002,
+    20261003,
+    20261004
+  ],
+  "B2_order": [
+    "O",
+    "P",
+    "M"
+  ],
+  "B3_overlap_penalty": 0.25,
+  "B3_signed_proxy": "-Re<u_anchor,Y_i gamma_i^-1 N_i x_receiver> - 0.5 ||Y_i gamma_i^-1 N_i x_receiver||^2; not finite material gain",
+  "pod_ranks": [
+    8,
+    16,
+    32
+  ],
+  "source_sketch_seed": 20261003,
+  "ridge_relative_alpha": 1e-06,
+  "feature_scaling": "training-only RMS, no intercept; preserves fixed-state direction linearity",
+  "verification_seed": 20261003,
+  "verification_cases": 128,
+  "cpu_budget_s": 3600,
+  "max_rss_bytes": 4294967296,
+  "blas_threads": 1,
+  "new_full_wave_rhs": 0,
+  "nn_training_epochs": 0,
+  "new_nonlinear_trajectories": 0,
+  "model_routing": {
+    "owner": "current Codex default unchanged",
+    "worker": "parent direct bounded CPU implementation",
+    "deepseek_profiles": "NOT_CONFIGURED_NO_AUTOMATIC_PROVIDER_CHANGE"
+  },
+  "future_training_only": {
+    "enabled": false,
+    "models": [
+      "shared_mlp",
+      "set_transformer",
+      "gat",
+      "phase_consistent_physics_edge_gnn"
+    ],
+    "width": 32,
+    "max_parameters": 200000,
+    "max_epochs": 60,
+    "folds": 4,
+    "seeds": [
+      20261002,
+      20261003
+    ],
+    "max_gpu_occupation_s": 7200
+  },
+  "A_gates": {
+    "near-contact_min": 0.7,
+    "asymmetric_min": 0.85,
+    "equal_object_mean_min": 0.85,
+    "additional_mean_coverage": 0.05,
+    "equal_quality_max_drop": 0.01,
+    "cost_reduction_target": 2.0
+  },
+  "B_gate": {
+    "oracle_skip_fraction_min": 0.6,
+    "counterfactual_only": true
+  },
+  "numerical_score_ties": {
+    "relative_quantum": 1e-12,
+    "original_atom_ID_tiebreak": true,
+    "B3_utility_round_decimals": 12,
+    "reason": "phase and storage permutation roundoff; fixed before any outcomes"
+  }
+}

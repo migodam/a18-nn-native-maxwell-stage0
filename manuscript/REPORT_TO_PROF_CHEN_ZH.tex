@@ -1,0 +1,162 @@
+\documentclass[UTF8,11pt,a4paper,fontset=fandol]{ctexart}
+
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,tabularx,longtable}
+\usepackage{tikz,pgfplots,xcolor,enumitem,fancyhdr,hyperref}
+\pgfplotsset{compat=1.18}
+\definecolor{deepblue}{HTML}{267E9A}
+\definecolor{warmred}{HTML}{CD715C}
+\definecolor{slate}{HTML}{6A7B8C}
+\definecolor{lavender}{HTML}{A494B8}
+\hypersetup{colorlinks=true,linkcolor=deepblue,citecolor=deepblue,urlcolor=deepblue}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small NN-native current design: Stage 0}\fancyhead[R]{\small 3 October 2026}\fancyfoot[C]{\thepage}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\Cov}{\operatorname{Cov}_{12}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\coverageTable}{
+\begin{center}\small\begin{tabular}{lrrrrr}\toprule
+Method & smooth & near-contact & layered & asymmetric & Mean\\\midrule
+B0 & 0.9689 & 0.3528 & 0.9198 & 0.6589 & 0.7251 \\
+B1 ($s=02$) & 0.9317 & 0.5809 & 0.9010 & 0.7647 & 0.7946 \\
+B1 ($s=03$) & 0.9658 & 0.8326 & 0.3139 & 0.8541 & 0.7416 \\
+B1 ($s=04$) & 0.9760 & 0.5426 & 0.9379 & 0.9287 & 0.8463 \\
+B2 & 0.9718 & 0.5178 & 0.9852 & 0.6751 & 0.7875 \\
+B3 & 0.7283 & 0.4142 & 0.7644 & 0.5969 & 0.6259 \\
+B4 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+B5 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+\bottomrule\end{tabular}\end{center}}
+\newcommand{\coverageFig}{
+\begin{tikzpicture}\begin{axis}[width=.94\linewidth,height=5.6cm,ybar,bar width=9pt,ymin=0,ymax=1.05,xmin=-.5,xmax=3.5,
+xtick={0,1,2,3},xticklabels={smooth,near-contact,layered,asymmetric},ylabel={Gain-weighted coverage},
+legend style={at={(.5,1.03)},anchor=south,legend columns=4,font=\footnotesize},tick label style={font=\small}]
+\addplot[fill=slate,draw=slate] coordinates {(0,0.96892621) (1,0.35281852) (2,0.91981014) (3,0.65892407)};
+\addplot[fill=lavender,draw=lavender] coordinates {(0,0.95783071) (1,0.65206036) (2,0.71758396) (3,0.84914981)};
+\addplot[fill=deepblue,draw=deepblue] coordinates {(0,0.97184706) (1,0.51782080) (2,0.98516681) (3,0.67505852)};
+\addplot[fill=warmred,draw=warmred] coordinates {(0,0.72834963) (1,0.41419167) (2,0.76436052) (3,0.59686521)};
+\legend{B0 prefix,B1 random mean,B2 O/P/M,B3 signed}
+\end{axis}\end{tikzpicture}}
+\newcommand{\marginFig}{
+\begin{tikzpicture}\begin{axis}[width=.91\linewidth,height=5.4cm,xmin=-1,xmax=33,ymin=-.02,ymax=1,
+xtick={0,8,16,32},xlabel={POD output rank (0: uncorrected)},ylabel={Counterfactual skip fraction},
+legend style={at={(.5,1.03)},anchor=south,legend columns=2,font=\footnotesize},tick label style={font=\small}]
+\addplot[deepblue,thick,mark=*] coordinates {(0,.55556)(8,.55556)(16,.55556)(32,.55556)};
+\addplot[deepblue,dashed,mark=square*] coordinates {(0,.55556)(8,.55556)(16,.5)(32,.5)};
+\addplot[warmred,thick,mark=triangle*] coordinates {(0,0)(8,0)(16,0)(32,0)};
+\addplot[black,dotted,mark=none] coordinates {(0,.6)(32,.6)};
+\addplot[black,dashdotted,mark=none] coordinates {(0,.75)(32,.75)};
+\legend{Tail POD oracle,Tail ridge,Direct POD oracle,Opportunity gate,Matched RHS-halving floor}
+\end{axis}\end{tikzpicture}}
+\setlength{\parindent}{2em}
+
+\title{关于 Maxwell Current Design 中 Learned Proposal\\与 Defect Compensation 的阶段性研究汇报}
+\author{给陈教授的研究汇报}
+\date{2026年10月3日}
+\begin{document}\maketitle
+陈教授：
+
+我这一轮希望先回答一个实际问题：已有 current design 的瓶颈，到底值得交给 NN（neural network）来学习哪一部分？我把问题拆成两个独立分支。A 是 \emph{learned candidate generator}：在昂贵 endpoint scoring 前提出十二个 incoming currents。B 是 \emph{directional defect compensation}：预测 reduced model 在同一 material direction 上遗漏的 observation response。我完成的是 Stage0 feasibility study，全部使用固定 archive；NN epochs、new full-wave RHS（right-hand sides，物理求解右端项）和 new nonlinear trajectories 都为零。
+
+我的结论是：\textbf{Candidate Generator first 仍然成立，可以建议一个 bounded tiny pilot；B 暂不建议直接进入训练。} 后一个判断包含两件不同的事：Gaussian 有数据部分的表示/margin 结果不支持当前表示带来额外价值；voxel 的完整向量标签不足，四对象 B 仍是 data-incomplete。
+
+\section{我如何把研究问题收缩到实际决策}
+以前的结果已经说明 full-dictionary analytical anchor 很擅长排序，但在线 shortlist 往往没有把有用的 incoming atom 放进去。这里 \emph{anchor} 指已经构建的更丰富 reduced current model，\emph{shortlist} 指先筛出的十二个 incoming IDs。排序正确与候选进入池子，是两个不同问题。我先复核这个区分，再引入有实际物理意义的廉价筛选，而不是先假定 NN 必须有用。
+
+我保留了原始 material gauge：每个 frozen state 的六个 illumination 共用一个 real material step。Gaussian 是54维实材料坐标，voxel 是3456维。当前 reduced current embedding 是128维，而 observation 向量是1536维实数。保存的 $L/S/PB$ 是这个 embedding 的投影映射，不能把它的 inverse 当作 full Maxwell truth。Step 与 gain 都使用保存的 total regularization，包含 prior precision 和 Levenberg--Marquardt（LM）damping；没有把它替换成仅有先验的系数。
+
+对 selected current basis $U$，我用
+\[
+ R_U=U(U^*LU)^{-1}U^*,\qquad J_U=\op{realify}\{SR_UB_p\}_{p=1}^6.
+\]
+一个 \emph{query} 包括物理状态、selected original atom IDs、公共 receiver Gauss--Newton（GN）step $x$、anchor、prior 和 receiver layout；一个 \emph{move} 是删除一个物理 ID 并加入另一个物理 ID。QR/SVD 只改变 span 的表示，不能改变动作身份。$L$ 与 Schur block（消去 retained core 后的块）不假设 Hermitian/SPD，原来的 $10^{-10}$ stability gate 保留。
+
+完整字典重新盘点得到36 queries、47,712 unique moves、43,108 feasible moves、5208 incoming labels，恰好覆盖四对象、三 phase、三 $k$。这些不是几万个独立物理场景。公共和原始 manifest 各自核对 hash，固定 source commit 与公开入口记录在复现包；历史文件保持只读。
+
+\section{A：解析筛选有所改善，却没有消除 NN 的机会}
+我比较了六类对手。B0 是原 family-prefix；B1 是三个固定 seed 的 family-matched random；B2 是 observation/coupling/material-injection 三轴固定轮转 union；B3 是 signed transfer 加 observation diversity，惩罚固定0.25；B4 是已经付费的完整字典 anchor；B5 是包含 no-op 的 one-swap teacher。
+
+\emph{Cov12} 衡量 shortlist 捕获了多少真正有益的 one-swap gain，而不是数有多少原子入选：先对每个 query 取池内最大的正 $Q_{\rm true}$，再与完整字典的对应总量相除。四对象均值等权，避免某个对象的 objective scale 主导判断。\emph{top1/top4 recall} 衡量最佳 incoming 及前四 incoming 是否进池，\emph{gain regret} 是错失的 gain。
+
+\coverageTable
+\noindent 随机 seed 的02/03/04分别是20261002/03/04；没有逐对象事后选择最好的 seed。
+\begin{figure}[htbp]\centering\coverageFig
+\caption{四对象 Cov12。random 柱是三个固定 seed 的均值，各 seed 全部保留在表中。图表共用同一 evidence ledger。}\end{figure}
+
+我首先恢复了原来 smooth/near-contact/layered/asymmetric 的0.969/0.353/0.920/0.659覆盖，full-dictionary anchor 的 top1 capture 仍有0.981--0.996。因此这轮观察到的困难，确实主要在 incoming pool，而不是完整 anchor 排序突然失效。
+
+B2 对 near-contact 从0.3528提高到0.5178，对 layered 提高到0.9852。这说明 dressed observation、双向 retained coupling 和公共 material-step injection 能提供一些真实任务信息。但 near-contact 还没到0.70，asymmetric0.6751还没到0.85，mean0.7875也没到0.85。这个正结果让我认为便宜物理特征值得保留，同时不能据此判解析方法已经解决问题。
+
+B3 的 mean 只有0.6259，我完整保留了这个负结果。它用公共 receiver step $x$ 做一个 addition transfer proxy；真正的 one-swap 会改变 retained core 和 child material GN step。这个 mismatch 可以解释为什么有符号的信息没有自动变成 material utility。这里是一个需要约束 future model target 的发现：学习应该面对 incoming utility，而不是把 addition response 直接包装成实际 swap gain。
+
+最强单个固定廉价对手的 mean0.8463，距离 one-swap teacher 仍有0.1537。三 random seeds 的表现并不稳定：一个 seed 改善 near-contact，但 layered 很差；另一个 seed 改善 asymmetric，却仍丢失 near-contact。我的 A\,GO 只是认为保留了值得检验的机会，\textbf{还不是 NN superiority 的实测结果}。下一轮还须在相同输入与成本预算下满足两困难对象与四对象均值门槛，并比最强廉价基线多0.05或同质量成本减半。
+
+我把信息按取得费用分成四级：F0 是已有缓存，F1 是廉价的投影乘法、coupling 和 injection；F2 是实际 child GN step 与完整 anchor score；F3 是 full Jacobian 和 truth。Proposal 只能用 F0/F1。F1 每项单独计费；joint warm median 为 4.60 ms/query。actual child step 与完整 Qhat 只在 shortlist 后使用。这个时间来自已缓存的 projected workspace，不能被说成 full-wave end-to-end acceleration。
+
+\section{B：为什么先扣掉已知部分，仍然没有得到足够 margin}
+这里的 \emph{defect} 是同一 material direction 的 full response 与 reduced response 的差。设 $d$ 为 child 与 receiver 的材料步差，
+\[
+ \Delta z_U=(J_F-J_U)d=(J_A-J_U)d+(J_F-J_A)d.
+\]
+第一项是已知的 \emph{inner correction}，我不让模型重新学习它；第二项是 \emph{anchor tail}。$A$ 和 $U$ 不一定嵌套，所以不能事先保证 tail 在每个方向都更小。
+
+实测 tail/direct norm 的中位数为 smooth0.3729、near-contact0.4356。这个正结果说明 target magnitude 的确显著降低。但我们需要的是满足 gain margin 的 response error，而不只是降低平均 target norm。
+
+我能合法构造的 matched measurement labels 是 smooth101、near-contact103，以及一个 asymmetric voxel 向量。voxel 的 $V/\code{fullJV}$ 只支持16维，当前差分方向的投影残差0.9948--0.9992，不能拿它评价任意 $d$。我也逐条检查 saved step/Js，只在 asymmetric late $k=8$ 恢复到一个合法 matched difference。另194条 voxel 向量仍缺失。unresolved-current teacher 为零；scalar Q 不够恢复 response vector，更不够恢复 full current。
+
+我用 train-only POD（proper orthogonal decomposition，training snapshots 的正交主成分）比较 rank8/16/32，并运行固定 linear ridge。四折规则没有改变：Fold1 以 smooth101个方向训练 basis，对 near-contact103个方向做 test；Fold3 中 reversed smooth 只是 validation。Fold0 的指定 train objects 没有完整 Gaussian 向量，不能把 validation 改作 train 来凑出双向 test。
+
+另一个诊断是 \emph{source compression oracle}。同一物理 current-row sketch 在 Gaussian 保存的54维 real material gauge 上仍有 rank54，未观测 tail 的 relative residual 最多 $4.47\times10^{-15}$。这说明在这个小 gauge 的 state-specific 线性信息检验里，source sketch 不是主要瓶颈；并不能据此宣称它对3456维 voxel 或 unseen state 的 NN 足够。
+
+\section{我把表示误差与实际 acceptance margin 连起来}
+原 gain 对固定方向是
+\[
+ Q=-u^Tz-(\ell+\Lambda x)^Td-\tfrac12(\norm{z}^2+d^T\Lambda d),
+ \quad u=r+J_Fx,\ z=J_Fd.
+\]
+如果 predictor 输出 $\hat z$，评价侧有精确的 saved-reference $u$，则 response error $\epsilon$ 会使 gain 最多偏差
+\[
+ \norm{u+\hat z}\epsilon+\tfrac12\epsilon^2.
+\]
+因此正 margin $m=\hat Q-\tau$ 对应
+\[
+ \epsilon_{\rm crit}=\frac{2m}{\sqrt{\norm{u+\hat z}^2+2m}+\norm{u+\hat z}}.
+\]
+这里 $\hat Q$ 使用精确的评价侧 $u$，只把 $z$ 换成 $\hat z$；它不同于 A 中采用 $r+J_Ax$ 的 anchor score。我用 actual response error 检查这个条件，得到的 \emph{oracle can skip} 只是反事实机会：在线并没有这样精确的 error envelope。
+
+\begin{figure}[htbp]\centering\marginFig
+\caption{primary near-contact test 的18个 B4 finalists。所有 tail POD ranks 都是10/18，与未补偿 anchor 相同；direct POD 全为0/18。}\end{figure}
+
+结果比单看 tail 变小更严格：direct-defect POD 的8/16/32均为0/18；anchor-tail 均为10/18，即55.6\%，没有增加未补偿 anchor 的可跳过数量。rank8 ridge也是10/18，rank16/32降至9/18；B2 的rank32 tail oracle为7/18。POD 的 train-only output orientation 在未见对象上仍很难对齐真正需要的 margin。这个结果限定于当前 projection/ridge pipeline；我没有把它解释成所有 state-conditioned compensation 都不可能。
+
+成本同样改变结论。历史三轮 workload 的1164 finalist RHS和216 initialization RHS给出59.28\%的理想 floor；这轮每 query 检查两个 finalists 的 single-decision workload，是54初始化RHS加108finalistRHS，需要75\% skip才能让总 RHS减半。55.6\%只能得到理想ratio0.6296，还没算 refresh/audit、失败和模型成本。continuous acceptance 还会累积 cached $Jx$ error，需要 cache radius/refresh；exact $Jd$ 不自动修复旧缓存。
+
+\section{我的分支裁决与希望讨论的问题}
+我建议 A 下一阶段只做一个 bounded tiny pilot，保持 MLP、Set Transformer、GAT 和 phase-consistent physics-edge GNN 的共同输入/预算，先检验能不能兑现 coverage gap，再谈 native architecture 的额外价值。当前只生成 disabled config，没有训练。
+
+对 B，我把全范围状态列为 data-incomplete；在有完整标签的 Gaussian primary test 中，当前 rank8/16/32 pipeline 没有足够额外 margin/cost headroom，因此不建议直接训练。若继续 B，最少的新证据应是合法 matched voxel vectors/exact receiver output，以及一个能在 train-only 条件下改变当前 margin ceiling 的 state-conditioned linear target representation。
+
+我希望与您讨论三个具体问题：第一，incoming utility 是否应成为 NN 的主要监督目标，而不是 observation/current-energy ranking；第二，phase-consistent physical-edge architecture 的优势应如何与普通等预算模型分开验证；第三，B 的下一步应先改 representation 还是先补 provenance-complete labels，哪一项能最快否定错误方向。这些讨论不会自动启动 full-wave label acquisition。
+
+这一轮完成了 source/scope/hash、完整字典、廉价对手、合法标签、POD/ridge/source/margin、成本与结构审计。128个新写非 Hermitian algebra cases 和四对象公共接口测试通过；原验证脚本缺失，未冒称原版复现。数值 residual failure 与 parser/adapter/serialization 修复都保留；16个 Woodbury units 用同一 normal equation 的一次固定 residual correction 验证到原门槛以下，无jitter或新物理算子。
+
+\textbf{Stage0 到此结束。} NN training、new full-wave RHS、new nonlinear trajectories、95\% safety calibration、真实在线 skip 和端到端加速均未运行。三份文稿、图表、claim/reference/failure ledger 与复现入口共享同一账本。
+
+\section*{与已有文献的关系}
+我没有把“小 current correction”当作新方向；ICLM、SOM-Net、learned operator correction 与 derivative compression 都给出了重要先例~\cite{wei,som,lunz,dino}。本轮更具体地把问题放在 physical-ID proposal 和固定 material-direction 的 acceptance 决策上。现有文献还提醒我，measurement-space correction 不能自动保证 gradient/adjoint consistency~\cite{lunz}。三个检索 formulation 部分HTTP429，PEC graph全文仍缺，当前 novelty 判断保留 OPEN；错误访问或缺标签不等于科学否定。
+
+\begin{thebibliography}{9}
+\bibitem{wei} Z. Wei and X. Chen, ``Physics-Inspired Convolutional Neural Network for Solving Full-Wave Inverse Scattering Problems,'' IEEE TAP, 2019. \href{https://doi.org/10.1109/TAP.2019.2922779}{doi:10.1109/TAP.2019.2922779}. Abstract-level evidence in this study.
+\bibitem{som} Y. Liu et al., ``SOM-Net: Unrolling the Subspace-based Optimization for Solving Full-wave Inverse Scattering Problems,'' 2022. \href{https://arxiv.org/abs/2209.03567}{arXiv:2209.03567}. Method and Algorithm 1 inspected.
+\bibitem{lunz} S. Lunz et al., ``On Learned Operator Correction in Inverse Problems,'' 2020 preprint. \href{https://arxiv.org/abs/2005.07069}{arXiv:2005.07069}; journal DOI \href{https://doi.org/10.1137/20M1338460}{10.1137/20M1338460}. Sections 3--4 inspected.
+\bibitem{dino} T. O'Leary-Roseberry et al., ``Derivative-Informed Neural Operator: An Efficient Framework for High-Dimensional Parametric Derivative Learning,'' 2022 preprint, revised 2023. \href{https://arxiv.org/abs/2206.10745}{arXiv:2206.10745}. Abstract-level evidence.
+\bibitem{residual} L. Cao et al., ``Residual-based error correction for neural operator accelerated infinite-dimensional Bayesian inverse problems,'' 2022 preprint. \href{https://arxiv.org/abs/2210.03008}{arXiv:2210.03008}. Abstract-level evidence.
+\bibitem{cert} B. Haasdonk et al., ``A new certified hierarchical and adaptive RB-ML-ROM surrogate model for parametrized PDEs,'' 2022. \href{https://arxiv.org/abs/2204.13454}{arXiv:2204.13454}. Abstract-level evidence.
+\end{thebibliography}
+
+\end{document}

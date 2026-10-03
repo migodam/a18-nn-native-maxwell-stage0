@@ -1,0 +1,4 @@
+  File "a18://code/run_stage0.py", line 277
+    p=R1/'code'/n;inventory(p,'source')
+    ^
+IndentationError: expected an indented block after 'for' statement on line 276

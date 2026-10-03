@@ -1,0 +1,26 @@
+{
+  "requested_editor_open": "queued for calling thread",
+  "native_compile_results": [
+    [
+      {
+        "path": "a18://manuscript/STAGE0_RESEARCH_EN.tex",
+        "kind": "success",
+        "message": "The current source compiled successfully with the desktop editor's compiler."
+      }
+    ],
+    [
+      {
+        "path": "a18://manuscript/REPORT_TO_PROF_CHEN_ZH.tex",
+        "kind": "success",
+        "message": "The current source compiled successfully with the desktop editor's compiler."
+      }
+    ],
+    [
+      {
+        "path": "a18://manuscript/COMPLETE_EXPLANATION_ZH.tex",
+        "kind": "success",
+        "message": "The current source compiled successfully with the desktop editor's compiler."
+      }
+    ]
+  ]
+}

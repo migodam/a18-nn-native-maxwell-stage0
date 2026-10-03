@@ -1,0 +1,11 @@
+{
+  "status": "FAILED_PARTIAL",
+  "completed_queries": 33,
+  "legal_direction_labels": 204,
+  "cpu_s": 6.125871,
+  "wall_s": 6.656495583010837,
+  "peak_rss_bytes": 883163136,
+  "nn_training_epochs": 0,
+  "new_full_wave_rhs": 0,
+  "new_nonlinear_trajectories": 0
+}

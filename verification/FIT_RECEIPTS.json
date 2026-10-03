@@ -1,0 +1,324 @@
+[
+  {
+    "fold": 0,
+    "status": "NO_COMPLETE_GAUSSIAN_TRAIN_OBJECT",
+    "prescribed_train_objects": [
+      2012,
+      2014
+    ],
+    "test_object": 2001,
+    "train_directions": 0
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_U_rank8.npz",
+    "sha256": "66d8fd0d7559139c0a9c6a79a47671af2172b49b151067c9990abddcd12677c3"
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_U_rank16.npz",
+    "sha256": "cb034e05ab8526ab03dfcc685e351e91d4b2abfae6d2ff400e39b186377e4579"
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_U_rank32.npz",
+    "sha256": "2299f2e54f82c51ff3c3f50677811b4eb1040012ae3a6beb5249a90dc4e59bcc"
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_A_rank8.npz",
+    "sha256": "714c90243f0a2dcac8134ee7045980ea5dfed0b52153018a0aa9d1f7ab776f56"
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_A_rank16.npz",
+    "sha256": "134265c4efec50bbff695d40376693a16b183b70be0855053bf53ca625206dd5"
+  },
+  {
+    "fold": 1,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2001
+    ],
+    "train_directions": 101,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.01306636938800864,
+    "model_path": "results/fit_fold1_A_rank32.npz",
+    "sha256": "d21f6fa51b02118185cc66a4ef230185710389c814a41f423e6fe7d5810896f3"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_U_rank8.npz",
+    "sha256": "914886f74683590713b76faf047995b0ddead3be2d062ccc19fd3557957ebe98"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_U_rank16.npz",
+    "sha256": "6e182a0bb85f90522548047f77d079870f0707836fc3eed303e57d212aafe0a9"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_U_rank32.npz",
+    "sha256": "fc4a91e57fe13f87c3305f75135e84a1044e554cce032a33ce520c93cbe890fd"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_A_rank8.npz",
+    "sha256": "7125a97672c87c43ba38e56882be16bdefcf50e7c1c79d403dcd2078066f2923"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_A_rank16.npz",
+    "sha256": "aeb099c3a5a7d00f25b427faec985e839458d8f54609ad3a7eaab8fa28b227ad"
+  },
+  {
+    "fold": 2,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2001,
+      2007
+    ],
+    "train_directions": 204,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.019227151863077805,
+    "model_path": "results/fit_fold2_A_rank32.npz",
+    "sha256": "7702189209f26bf5ac02561fdbd9e03bca755838f0063fb282f6abac18a3bbc3"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_U_rank8.npz",
+    "sha256": "f30362c8b94dfd9dc8c0ae26b0693af7b374f4ab3315fce18be23bd64d8d6d43"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_U_rank16.npz",
+    "sha256": "60a3ac8d909e7186fd18300da184ddd8c03542aaeffc97db3c1e18025cf0e75c"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "U",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_U_rank32.npz",
+    "sha256": "b8317087876406a4b03776d1db9c317e206b0fd9fc4e40aef3f7cac99acf839b"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 8,
+    "effective_rank": 8,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_A_rank8.npz",
+    "sha256": "31ea1f1a66558a40b49f0f48d224294de6b15291f97bf6882457737e03a479aa"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 16,
+    "effective_rank": 16,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_A_rank16.npz",
+    "sha256": "90c7e5248fc816788506631b8d81fc236f1818f7ed98d612ecafcffcc4a4eba8"
+  },
+  {
+    "fold": 3,
+    "status": "TRAIN_OBJECTS_ONLY_FIXED_FIT",
+    "target": "A",
+    "requested_rank": 32,
+    "effective_rank": 32,
+    "train_objects": [
+      2007
+    ],
+    "train_directions": 103,
+    "validation_labels_used_for_fit": false,
+    "test_labels_used_for_fit": false,
+    "ridge_relative_alpha": 1e-06,
+    "ridge_alpha": 0.012938719193617276,
+    "model_path": "results/fit_fold3_A_rank32.npz",
+    "sha256": "f2d75aec82aa51ffb9a8830d4460b76a9fc64efadd8a7677fc9aa58bc49b62d5"
+  }
+]

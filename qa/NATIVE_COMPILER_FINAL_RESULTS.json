@@ -1,0 +1,27 @@
+{
+  "requested_editor_open": "queued for calling thread; same standalone source files",
+  "records": [
+    {
+      "name": "STAGE0_RESEARCH_EN",
+      "path": "a18://manuscript/STAGE0_RESEARCH_EN.tex",
+      "kind": "success",
+      "message": "The current source compiled successfully with the desktop editor's compiler.",
+      "source_sha256": "08db33979c3c456762bc912177ca91171cf878adcb08acd05e3eec17047c4dc0"
+    },
+    {
+      "name": "REPORT_TO_PROF_CHEN_ZH",
+      "path": "a18://manuscript/REPORT_TO_PROF_CHEN_ZH.tex",
+      "kind": "success",
+      "message": "The current source compiled successfully with the desktop editor's compiler.",
+      "source_sha256": "422a8db4f67ac3bf6273915801a7c04a02144c8d040921ad63908d50885f9c03"
+    },
+    {
+      "name": "COMPLETE_EXPLANATION_ZH",
+      "path": "a18://manuscript/COMPLETE_EXPLANATION_ZH.tex",
+      "kind": "success",
+      "message": "The current source compiled successfully with the desktop editor's compiler.",
+      "source_sha256": "b9f3f6e6848be1163b99530b46ca78d5f69efc7693e8634458536acd3e65f27b"
+    }
+  ],
+  "scope": "All current sources recompiled successfully after final total-regularization definition; no native source errors."
+}

@@ -1,0 +1,19 @@
+{
+  "stage": "MEASURED_PROCESS_TOTAL",
+  "additive": false,
+  "through_attempt": 33,
+  "process_count": 33,
+  "numerical_cpu_s": 49.112697999999995,
+  "all_metered_process_cpu_s": 80.294068,
+  "authoring_cpu_s": 31.18137,
+  "all_metered_process_wall_s": 179.04631049995078,
+  "failed_process_cpu_s": 19.095366,
+  "peak_rss_bytes": 884965376,
+  "cpu_budget_s": 3600,
+  "max_rss_bytes": 4294967296,
+  "new_full_wave_rhs": 0,
+  "nn_training_epochs": 0,
+  "new_nonlinear_trajectories": 0,
+  "scope": "CHILD_PROCESS_RUSAGE INCLUDING FAILED ATTEMPTS; native UI compiler CPU not instrumented; authoring included separately",
+  "no_measured_physics_speedup": true
+}

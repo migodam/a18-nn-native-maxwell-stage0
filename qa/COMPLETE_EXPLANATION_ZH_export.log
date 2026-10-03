@@ -1,0 +1,9 @@
+note: Running TeX ...
+note: Running xdvipdfmx ...
+note: Writing `a18://manuscript/COMPLETE_EXPLANATION_ZH.pdf` (441.390625 KiB)
+note: Writing `a18://manuscript/COMPLETE_EXPLANATION_ZH.out` (4.8017578125 KiB)
+note: Writing `a18://manuscript/COMPLETE_EXPLANATION_ZH.aux` (5.1201171875 KiB)
+note: Writing `a18://manuscript/COMPLETE_EXPLANATION_ZH.log` (32.986328125 KiB)
+note: Writing `a18://manuscript/COMPLETE_EXPLANATION_ZH.toc` (2.5595703125 KiB)
+warning: COMPLETE_EXPLANATION_ZH.tex:340: Underfull \hbox (badness 1424) in paragraph at lines 339--340
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.

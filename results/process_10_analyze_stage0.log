@@ -1,0 +1,4 @@
+  File "a18://code/analyze_stage0.py", line 136
+    certificate_scope='COUNTERFACTUAL_EXACT_ERROR_ORACLE_NOT_AVAILABLE_ONLINE'))
+                                                                               ^
+SyntaxError: unmatched ')'

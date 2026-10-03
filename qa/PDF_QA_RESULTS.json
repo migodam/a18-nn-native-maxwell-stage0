@@ -1,0 +1,397 @@
+[
+  {
+    "pdf": "manuscript/COMPLETE_EXPLANATION_ZH.pdf",
+    "source": "manuscript/COMPLETE_EXPLANATION_ZH.tex",
+    "pdf_sha256": "2ff801d14b5e9027e4628b64f5e9c1bf218f67bf29b8ed29aaf18ed6116ea045",
+    "source_sha256": "b9f3f6e6848be1163b99530b46ca78d5f69efc7693e8634458536acd3e65f27b",
+    "pages": 14,
+    "page_records": [
+      {
+        "page": 1,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-01.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 828,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "decf3da1d42ac6e96e0a168f0a29fbaf942e75af93386ba4e0c18391b280b8dc"
+      },
+      {
+        "page": 2,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-02.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 577,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "285e3674700e6f9770eef7b44a8081e0416add6e23c9f90d6a7f546ed1b10c89"
+      },
+      {
+        "page": 3,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-03.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1250,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "9b07c65312a12244e0a842015847ba2b48490bca421581c225ba63fa2476709a"
+      },
+      {
+        "page": 4,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-04.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1131,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "6988fc94b06e0c69cca879d1603e670b60bc718b0f044b21d20881e1983b3834"
+      },
+      {
+        "page": 5,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-05.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1431,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "f73f51efe1a78b391cc29c5e6e177bf7de6289f7b636c3945ee351ca0d365c28"
+      },
+      {
+        "page": 6,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-06.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1124,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "0f3430b54a63b8d61ca7f0a1dc2099f2fde9851088bf37f10b00ba43b16a2227"
+      },
+      {
+        "page": 7,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-07.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1267,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "3a24f4e8667299cf61cd7a10bcfccfd2fc54b39b7879b0f2961c7ca2fd829b35"
+      },
+      {
+        "page": 8,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-08.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1530,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "6c403c18d7388c2ac2eca4854fbc4709adf26135131937e379b52ae4db6d3fa7"
+      },
+      {
+        "page": 9,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-09.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1304,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "a24e47abcc522398030ccf3e06ae46d21a98d2adce7437bdf51afdcbb1ebdb37"
+      },
+      {
+        "page": 10,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-10.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1429,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "a1a7bd53ed88b05408eff1b63160f4b84b3c2cda54b412d75bb954fb1542a027"
+      },
+      {
+        "page": 11,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-11.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1278,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "ff7cacf805cefaeccd30e27c5f5116a82f4f5ad1ff8c3d3e00683f519e85018a"
+      },
+      {
+        "page": 12,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-12.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1914,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "e35be2c5565ac60ad6949cb7f2e3ef3566723e99d55520e0a50a5d97239a49f7"
+      },
+      {
+        "page": 13,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-13.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1432,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "445e486fb9d8309e3b77061f2e3b04824d4d276e4d16359fcba417785e52ece8"
+      },
+      {
+        "page": 14,
+        "image": "qa/rendered/COMPLETE_EXPLANATION_ZH/page-14.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1821,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "36c8115384753536704f875ed3b5410fcfde3596b3fff716ce4bdd3ebcafb27a"
+      }
+    ],
+    "contacts": [
+      "qa/rendered/COMPLETE_EXPLANATION_ZH/contact_01_04.png",
+      "qa/rendered/COMPLETE_EXPLANATION_ZH/contact_05_08.png",
+      "qa/rendered/COMPLETE_EXPLANATION_ZH/contact_09_12.png",
+      "qa/rendered/COMPLETE_EXPLANATION_ZH/contact_13_14.png"
+    ],
+    "unresolved_citation_marker": false,
+    "replacement_characters": 0,
+    "overfull_warnings": [],
+    "missing_glyph_warnings": [],
+    "visual_review": "PASS_ALL_PAGES_VIEWED",
+    "review_method": "100dpi Poppler page renders; every page viewed in contact sheets; changed pages re-viewed individually or in current contact sheets."
+  },
+  {
+    "pdf": "manuscript/REPORT_TO_PROF_CHEN_ZH.pdf",
+    "source": "manuscript/REPORT_TO_PROF_CHEN_ZH.tex",
+    "pdf_sha256": "d07f1051ee54a2013615987734f3080df7bd4a18b7fbda9ccb42b83e2f90010a",
+    "source_sha256": "422a8db4f67ac3bf6273915801a7c04a02144c8d040921ad63908d50885f9c03",
+    "pages": 6,
+    "page_records": [
+      {
+        "page": 1,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-1.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1186,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "f3ce640c8692fd44fb1a1ca1703d22a86df09c29089c6f3729ef89e78f5069ce"
+      },
+      {
+        "page": 2,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-2.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1180,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "454093572c6b14584de91fd7703239ef731110d99c31d9760dadf283289f215e"
+      },
+      {
+        "page": 3,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-3.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1639,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "5d46ddc4598423c33d4cc30ee1ec74cec03a1cc2d58c2892d5052e2a46c96f51"
+      },
+      {
+        "page": 4,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-4.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1302,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "1c1e7ac152031aa91ad77aa5c5b5339b7373884da9cae1843148bd91c9c78437"
+      },
+      {
+        "page": 5,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-5.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1682,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "cc1bae90a23f447f25985caf8c8b4d249480f8ea897e2d97ef57474be3541b25"
+      },
+      {
+        "page": 6,
+        "image": "qa/rendered/REPORT_TO_PROF_CHEN_ZH/page-6.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1188,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "06e3dbcd533f08d4cd6c2022255288472312031e2472c77a38c31db2171fa32a"
+      }
+    ],
+    "contacts": [
+      "qa/rendered/REPORT_TO_PROF_CHEN_ZH/contact_01_04.png",
+      "qa/rendered/REPORT_TO_PROF_CHEN_ZH/contact_05_06.png"
+    ],
+    "unresolved_citation_marker": false,
+    "replacement_characters": 0,
+    "overfull_warnings": [],
+    "missing_glyph_warnings": [],
+    "visual_review": "PASS_ALL_PAGES_VIEWED",
+    "review_method": "100dpi Poppler page renders; every page viewed in contact sheets; changed pages re-viewed individually or in current contact sheets."
+  },
+  {
+    "pdf": "manuscript/STAGE0_RESEARCH_EN.pdf",
+    "source": "manuscript/STAGE0_RESEARCH_EN.tex",
+    "pdf_sha256": "2cc4a486867bd233630e396194e47eeb435efb323ec5e3799ed74b4e2fad9a7e",
+    "source_sha256": "08db33979c3c456762bc912177ca91171cf878adcb08acd05e3eec17047c4dc0",
+    "pages": 8,
+    "page_records": [
+      {
+        "page": 1,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-1.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 3159,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "e5087c63ca48e88c10145fb743c6467e31ca9d935b7263270c16ca5faee8f904"
+      },
+      {
+        "page": 2,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-2.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 3571,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "bfb6efa2d3b4970d5cc69cc2a63917ba71f1fa7a34c3bbe1bc12a811cda176ff"
+      },
+      {
+        "page": 3,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-3.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 2409,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "369a90ee9f68be1f2bd308553869e076205869511fe803becbd79a1fdacce9f8"
+      },
+      {
+        "page": 4,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-4.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 2869,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "fc341535feacf2a33a3f2e4ecf615f9fbe44ecf56def375a2fcc8a56160dca56"
+      },
+      {
+        "page": 5,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-5.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 3071,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "936e9de96162e2cda7aabac3feefbf75ff3393ae32c84f089431a37a5028962e"
+      },
+      {
+        "page": 6,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-6.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 2580,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "067d5e52cdf3989709f85b77255babf1fa676eb771cddcc8e7d09fca7de188a9"
+      },
+      {
+        "page": 7,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-7.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 3435,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "b694fdb8930f0a3dd4881ad89b2b686ac588c0eca9e9e636e44d37df05f7f211"
+      },
+      {
+        "page": 8,
+        "image": "qa/rendered/STAGE0_RESEARCH_EN/page-8.png",
+        "pixels": [
+          827,
+          1170
+        ],
+        "text_chars": 1543,
+        "visual_review": "PASS",
+        "visual_notes": "Readable text/math; intact table/figure labels and margins; no clipping, overlap, missing glyphs or unresolved citations observed.",
+        "image_sha256": "fc10760b4cbff65cbb0752dc1ffb23834e73991906b99159747a0f65653b5bb8"
+      }
+    ],
+    "contacts": [
+      "qa/rendered/STAGE0_RESEARCH_EN/contact_01_04.png",
+      "qa/rendered/STAGE0_RESEARCH_EN/contact_05_08.png"
+    ],
+    "unresolved_citation_marker": false,
+    "replacement_characters": 0,
+    "overfull_warnings": [],
+    "missing_glyph_warnings": [],
+    "visual_review": "PASS_ALL_PAGES_VIEWED",
+    "review_method": "100dpi Poppler page renders; every page viewed in contact sheets; changed pages re-viewed individually or in current contact sheets."
+  }
+]

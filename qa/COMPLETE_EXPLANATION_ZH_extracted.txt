@@ -1,0 +1,776 @@
+                      NN-native Maxwell Current Design
+                   从问题、推导到本轮证据的完整讲解
+
+                                中文研究稿理解与阅读指南
+
+                                     2026 年 10 月 3 日
+
+
+                                              摘要
+
+         本讲解按英文研究稿的同一论证顺序，完整解释问题、物理接口、解析算法、实验结果和分支
+    判断，再补充逐步推导及双语术语。读完后应能区分：候选覆盖与排序精度，measurement defect
+    与 full-current defect，representation oracle 与可部署 predictor，约 60% 的历史机会门槛与本次
+    75% 的成本门槛。实际结论是 A 建议下一阶段 tiny pilot；B 全范围数据不足，有完整 Gaussian
+    标签部分的当前正交主成分与固定 ridge 表示没有额外 margin/cost 空间。神经网络训练与新增
+    物理 actions 均未启动。
+
+
+
+                                             目录
+
+1 英文研究稿的核心问题：NN 应学习什么                                                                                 3
+
+
+2 物理变量、共享材料 gauge 与三个接口                                                                               3
+
+  2.1   从 Maxwell tangent 到共享材料步 . . . . . . . . . . . . . . . . . . . . . . . . . . . .              3
+
+  2.2   公共投影并不等于完整物理算子 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                    3
+
+
+3 核心推导一：两侧 defect 为什么成立                                                                               4
+
+
+4 核心推导二：one-swap 的 Schur transfer 与物理 ID                                                              5
+
+
+5 共同 query、teacher 与四折怎么构造                                                                            5
+
+
+6 A 的固定算法步骤与结果逐项解读                                                                                    6
+
+  6.1   B0/B1：原前缀和公平随机对手 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                  6
+
+  6.2   B2：三个物理轴的 union           . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+
+  6.3   B3：有符号的 addition proxy 与 diversity . . . . . . . . . . . . . . . . . . . . . . . .            6
+
+  6.4   B4/B5：昂贵参照与覆盖指标 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                 7
+
+
+7 B 的向量标签：什么能够恢复，什么不能                                                                                 8
+
+                                                1
+NN-native current design: Stage 0                                                      3 October 2026
+
+
+8 核心推导三：anchor tail 与 source/latent oracle                                                           9
+
+   8.1   把已知部分从学习目标中拿掉 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                 9
+
+   8.2   POD 与固定 ridge 的实际步骤 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             9
+
+   8.3   source compression oracle 检查的是信息条件 . . . . . . . . . . . . . . . . . . . . . .             10
+
+
+9 核心推导四：gain、error radius 与费用门槛                                                                     10
+
+   9.1   从 full quadratic objective 推导 gain . . . . . . . . . . . . . . . . . . . . . . . . . . .   10
+
+   9.2   为什么 response error 必须服从实际 margin . . . . . . . . . . . . . . . . . . . . . . .             10
+
+   9.3   约 60% 与 75% 为什么并不矛盾 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .            11
+
+   9.4   缓存误差与统计边界 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          12
+
+
+10 验证、失败、文献与复现边界                                                                                    12
+
+
+11 最终理解与下一阶段所需最少证据                                                                                  13
+
+
+A 中英文术语与容易混淆的量                                                                                      13
+
+
+
+
+                                                  2
+NN-native current design: Stage 0                                                     3 October 2026
+
+
+                    1 英文研究稿的核心问题：NN 应学习什么
+
+      Reduced current model（降阶电流模型）用少量电流方向替代高维 Maxwell current solve。Current
+dictionary（电流字典）是可以选取的原子集合；一个原子有固定的 physical ID。Incoming shortlist
+（候选短名单）先挑十二个未选原子，让后续昂贵端点评分仅在这十二个上进行。
+
+      这种设计的目标最终是 inverse problem 的 material update（材料更新）。观测很强的 current，
+不一定能改善材料步；改动 current span，也不等于改动 material direction。英文稿第一个问题因
+此是：强的廉价物理筛选之后，learned candidate generator 还有多大可兑现的机会？第二个问题是：
+已存的 directional defect 能否被压缩到足够精度，从而有机会减少 gain verification？
+
+      此前 full-dictionary anchor 的排序很准，但 near-contact/asymmetric 的十二候选覆盖差。这
+给 A 提供了明确的切入点。B 是另一条独立方向，不能因为 A 有机会就自动训练 B。Stage0 的作
+用是先排除错误输入、非法 teacher、低秩误判和成本错觉。
+
+
+
+                     2 物理变量、共享材料 gauge 与三个接口
+
+2.1    从 Maxwell tangent 到共享材料步
+
+      设当前物理状态冻结。L 是 Maxwell current operator，S 将电流映射到测量，Bp 是第 p 个
+illumination 下材料扰动到 current source 的 tangent map。六个 illumination 都作用在同一个材料
+扰动 d 上。我们不是对每个 illumination 独立求一套材料未知量。
+
+      保存的 material gauge（材料坐标规约）是 exact physical orthonormal tangent。Gaussian 有 27
+个 complex coordinates，实化后 54 维；voxel 有 1728 个 complex coordinates，实化后 3456 维。ℓ、
+steps 与 basis fingerprint 必须一致，不能把同维度但不同 basis 的系数直接混用。Λ = λtotal I 是保
+存的 total quadratic regularization（总二次正则）
+                                       ，包含 prior precision（先验精度）与 Levenberg–
+Marquardt（LM）damping。以 smooth early 为例，λtotal = 10−5 + 10−2 = 0.01001。Step 与 frozen
+gain 均保留这个总量；ℓ 是另一个保存的线性项。
+
+      材料 packing 为                       "         #
+                                             ℜdc
+                                    d=                 ,   dc = d1:q + idq+1:2q .
+                                             ℑdc
+数据则对每个 illumination 先存 [ℜyp ; ℑyp ]，再依次堆六个块。这给出 6 × 2 × 128 = 1536 real
+measurements。材料实化与数据堆叠是两件不同的事。
+
+
+2.2    公共投影并不等于完整物理算子
+
+      完整 current 有 5184 行，保存的正交 embedding Q 有 128 列。公共数据是
+
+                               e = Q∗ LQ,
+                               L                       Se = SQ,     P B p = Q∗ Bp .
+
+                                                         e −1 ，也只是
+它们可以给已有字典中的 reduced endpoint 算 response 和 GN step。即使能精确求 L
+在 128 维公共模型中求解，不能凭它生成 full-wave JF d。尤其是 Q 外的 current 或 injection 分量
+没有因此被观测到。
+
+                                                             3
+NN-native current design: Stage 0                                             3 October 2026
+
+
+    Gauss–Newton（GN）在冻结状态中最小化 reduced quadratic。令 JU 为材料到 observation 的
+实 Jacobian（导数矩阵），公共 receiver step 为
+
+                                      x = −(JUT JU + Λ)−1 (JUT r + ℓ).
+
+信息按费用分为 F0 已有缓存、F1 廉价投影特征、F2 实际 child GN/完整 anchor score、F3 full-
+wave teacher/reference。三类接口据此分开：public/proposal 只接收 F0/F1；teacher 保存 incoming
+utility 或向量 target；evaluator 拥有完整 Jacobian、Qtrue 、truth 与 reference step。F2 的 child
+material step/完整 anchor score 在 shortlist 之后才使用。Object ID、路径、几何类别和 seed 可
+以记录 provenance/split，却不能进入网络作为捷径。current-family 是原子物理生成来源的元数据，
+可以合法使用。
+
+
+
+                       3 核心推导一：两侧 defect 为什么成立
+
+    假设完整物理 L 可逆，且 compressed block 通过稳定性门槛。对当前 selected span 的正交
+basis U ，定义
+                                    AU = U ∗ LU,         RU = U A−1 ∗
+                                                                 U U .
+
+RU 是 Galerkin current response，而不是 Euclidean projector。只要 AU 稳定，RU LRU = RU ：
+
+                            U A−1 ∗    −1 ∗     −1    −1 ∗
+                               U U LU AU U = U AU AU AU U = RU .
+
+
+由此，右侧 injection defect 和左侧 observation defect 为
+
+                            IU,p = (I − LRU )Bp ,         OU = S(I − RU L).
+
+展开双侧乘积：
+
+                           OU L−1 IU,p = S(I − RU L)L−1 (I − LRU )Bp
+                                         = S(L−1 − RU − RU + RU LRU )Bp
+                                         = S(L−1 − RU )Bp .
+
+右边就是 full 与 reduced observation tangent 的差。因此
+
+                                    JF − JU = realify{OU L−1 IU,p }6p=1 .
+
+这个推导使用一般 complex L，没有把它假设成 Hermitian/SPD。它告诉我们遗漏误差同时受 source
+injection、full current feedback 和 observation dressing 控制。仅看原子的观测能量，可能漏掉材料
+扰动的注入方向和 current feedback。
+
+    这是原有 Galerkin/Schur 代数的解释，不被写成新增数学原创性。实际公共计算只拥有投影
+maps；等式中的 full L−1 留在物理解释或 evaluator 概念层。
+
+
+
+
+                                                     4
+NN-native current design: Stage 0                                              3 October 2026
+
+
+           4 核心推导二：one-swap 的 Schur transfer 与物理 ID
+
+    删除一个原子后，剩余 span 记为 V ，其 compressed operator 为 AV = V ∗ LV 。把 incoming
+bank 记为 C，原被删 bank 记为 A（这里 A 表示一个 bank，和 richer anchor 的下标应按上下文
+区分）。在 V 外表述 bank Z，定义
+
+                                     Z̄ = Z − V A−1 ∗
+                                                 V V LZ,
+
+                                    ΓZ = Z ∗ LZ̄,
+                               NZ,p = Z ∗ (Bp − LRV Bp ),      YZ = S Z̄.
+
+消去 retained block 后，新增 transfer 是 YZ Γ−1
+                                      Z NZ,p 。因此交换造成
+
+
+                        JV +C − JV +A = realify{YC Γ−1           −1
+                                                    C NC,p − YA ΓA NA,p }p .
+
+
+这里能共用 retained factor，但 child step 仍要解同一 real material normal problem；不能把 current
+transfer 直接当作材料 gain。
+
+    动作身份始终是 original dictionary atom ID。SVD/QR 会旋转 basis，因此 “删除第几列正交
+基” 不等于 “删除哪个 physical atom”。实际数据接口保存原始 selected IDs、drop/add IDs，置换
+存储后映射回它们。
+
+    若 bank 相位变换为 Z ′ = ZE，E 是对角 unitary，则
+
+                               N ′ = E ∗ N,     Γ′ = E ∗ ΓE,   Y ′ = Y E.
+
+因此 Y ′ Γ′−1 N ′ = Y Γ−1 N 。这些是 phase covariance（相位协变）的具体规则，最终物理动作应 phase
+invariant（相位不变）
+              。普通 complex feature concatenation 不会自动满足它；future network 必须
+单独通过这些测试。
+
+    scalar γ 的 usual condition number 总是 1，不能用它辨别近奇异。我们记录 normalized |γ|、re-
+tained core 的 reciprocal condition 与实际 child/core gate；block Γ 才有有意义的 condition number。
+稳定性阈值保持 10−10 ，不能用 arbitrary jitter 换取 “PASS”。
+
+
+
+                      5 共同 query、teacher 与四折怎么构造
+
+    一个 query 的身份包括 object/state/pool、selected physical IDs、公共 x hash、anchor hash、
+ℓ/Λ、gauge 和 receiver/operator layout。early 的不同对象可能都从零 contrast 出发，如果只按 state
+hash 去重，会错误合并物理上下文。
+
+    每个 query 的完整 one-swap 字典是 k(154 − k)。四对象各三 phase、k = 4, 8, 16，给出
+
+                        12[4(154 − 4) + 8(154 − 8) + 16(154 − 16)] = 47712.
+
+实测 unique moves=47,712、feasible=43,108、unique incoming utilities=5208、duplicate=0。数值
+floor、actual rank、core/child feasibility、最优 drop 的并列集合都保留。No-op 的 utility 是 0；本
+轮 36 queries 都有超过 floor 的正收益，所以 no-positive query 数为 0。
+
+
+                                                    5
+NN-native current design: Stage 0                                                              3 October 2026
+
+
+      incoming teacher 是所有合法 drop 中的最大正收益：
+
+                                    ti (q) = max(0,         max          Qq,a,i ).
+                                                       a∈Uq , feasible
+
+它不是 “每个 query 恰好一个正标签”；不同 incoming 可以同时有正 utility，最优 drop 也可以并
+列。
+
+
+                       Fold   Train objects                 Validation          Test
+
+                         0    layered, asymmetric           near-contact        smooth
+                         1    smooth, asymmetric            layered             near-contact
+                         2    smooth, near-contact          asymmetric          layered
+                         3    near-contact, layered         smooth              asymmetric
+
+
+每折有 18 train/9 validation/9 test queries。所有 phases、k、moves、augmentations 都随对象进
+入同一 partition。任何 RMS、POD 或超参数选择不能偷看 test。这个 benchmark 是 retrospective
+object holdout，并非全新盲采集的数据。
+
+
+
+                         6    A 的固定算法步骤与结果逐项解读
+
+6.1    B0/B1：原前缀和公平随机对手
+
+      B0 在 current-family 之间 round-robin，每个 family 按原始顺序取前缀，直到十二个。因此
+它不是强物理筛选。B1 先固定 B0 的 family counts，再在各 family 中随机选同样数量，seed 为
+20261002/03/04。全部 seed 都报告，不能事后按对象挑一个最优 seed。
+
+
+6.2    B2：三个物理轴的 union
+
+      用整个 receiver U 构造 c̄i 与 dressed observation Yi 。O 轴衡量归一化 dressed observation；P
+轴保留两个方向的 retained coupling；M 轴用公共 receiver material step x 检查 projected injection：
+
+                              Oi = ∥Yi ∥2 / ∥ci ∥2 ,
+                              Pi = (∥U ∗ Lci ∥2 + ∥c∗i LU ∥2 )/ ∥ci ∥2 ,
+                                   X
+                              Mi =    |c∗i (I − LRU )Bp x|2 /(∥x∥2 ∥ci ∥2 ).
+                                      p
+
+三个列表分别降序排序。按 O/P/M 固定轮转，每次取列表中下一个尚未出现的原子；重复就跳过，
+直到十二个。score relative 10−12 范围作为数值并列，按 original ID 定序。这套参数在首次 outcomes
+前冻结，没有依据结果调权重。
+
+
+6.3    B3：有符号的 addition proxy 与 diversity
+
+      记 wi = realify{Yi γi−1 np,i }p ，uA = r + JA x。proxy 是
+
+                                          si = −uTA wi − 21 ∥wi ∥2 .
+
+                                                        6
+NN-native current design: Stage 0                                                                                        3 October 2026
+
+
+先在 query 内做 percentile rank，再贪心选最大
+                                                                                      |Yi∗ Yj |2
+                                                   ranknorm(si ) − 0.25 max                         .
+                                                                              j∈P   ∥Yi ∥2 ∥Yj ∥2
+
+这个 overlap penalty 避免候选观察方向过度相似。注意 wi 来自 receiver 的 x 和 addition，不是 child
+的 d，也没有删除一个 atom 后的真实 retained core。因此它是廉价 proxy，不是 actual one-swap
+gain。
+
+
+6.4                     B4/B5：昂贵参照与覆盖指标
+
+         B4 用已有完整 dictionary endpoint/anchor score 排序；B5 用已有 full-objective one-swap
+teacher，包含 no-op。它们本轮都用 archive 查表，不能把查表速度算成真实 deploy speed。
+
+         Cov12（增益加权十二候选覆盖）是每个 query 池内最佳正 gain 的总和，除以完整字典最佳正
+gain 总和。Top1 recall 检查是否捕获任何并列最优 incoming；top4 recall 是捕获的 tied top-four 集
+合比例；gain regret 是遗漏的 gain。零分母应 NA，不能装成 0 或 1。四对象 mean 等权，不让较
+大 objective scale 支配结论。
+
+
+                                     Method        smooth      near-contact    layered      asymmetric        Mean
+
+                                     B0             0.9689          0.3528      0.9198              0.6589   0.7251
+                                     B1 (s = 02)    0.9317          0.5809      0.9010              0.7647   0.7946
+                                     B1 (s = 03)    0.9658          0.8326      0.3139              0.8541   0.7416
+                                     B1 (s = 04)    0.9760          0.5426      0.9379              0.9287   0.8463
+                                     B2             0.9718          0.5178      0.9852              0.6751   0.7875
+                                     B3             0.7283          0.4142      0.7644              0.5969   0.6259
+                                     B4             1.0000          1.0000      1.0000              1.0000   1.0000
+                                     B5             1.0000          1.0000      1.0000              1.0000   1.0000
+
+
+
+                                                   B0 prefix   B1 random mean         B2 O/P/M          B3 signed
+
+
+
+
+      Gain-weighted coverage
+                                1
+
+
+
+
+                               0.5
+
+
+
+
+                                0
+                                      smooth               near-contact                  layered                    asymmetric
+
+
+图 1: 覆盖图。B0 复核历史瓶颈；B2 对 near-contact/layered 有改善；B3 没有把有符号 addition
+transfer 变成更好的材料动作。random 均值不掩盖三个 seed 的完整表。
+
+         第一个发现：完整 anchor 排序够好，incoming pool 才是缺口。 B0 分别为 smooth 0.9689、
+near-contact 0.3528、layered 0.9198、asymmetric 0.6589；B4 anchor top1 capture 依次为 0.9960、
+0.9810、0.9937、0.9883。仅提高排序并不能把未进入池子的 atom 变出来。
+
+                                                                          7
+NN-native current design: Stage 0                                                3 October 2026
+
+
+    第二个发现：廉价物理特征能改善，但没有关闭 opportunity。 B2 把 near-contact 从 0.3528
+提高到 0.5178，把 layered 提高到 0.9852，却仍失败于 near-contact0.70、asymmetric0.85、mean0.85
+三门槛。signed B3 的 mean0.6259 是需要保留的失败：更复杂的物理 proxy 不保证更好材料 utility。
+
+    第三个发现：随机 seed 的对象间不稳定，不能用事后 routing 虚构解析胜利。seed03 使 near-
+contact 达到 0.8326、asymmetric0.8541，但 layered 只有 0.3139；seed04mean0.8463，near-contact
+只有 0.5426。单个固定 cheap baseline 到 teacher 的 mean gap 为 0.1537。这提供 A 的试验价值，
+不保证 NN 能达到 teacher。
+
+    下面表列出并列最优相关的 recall 和原始 objective 中的 regret；完整三随机 seed 与每 query
+记录在 CSV。
+
+                          Object           Method   Top1    Top4    Regret sum
+
+                          smooth           B0       0.222   0.111     4.79e-05
+                          smooth           B2       0.222   0.167     4.34e-05
+                          smooth           B3       0.000   0.000     4.18e-04
+                          smooth           B4       1.000   1.000     0.00e+00
+                          near-contact     B0       0.000   0.000     1.94e-04
+                          near-contact     B2       0.111   0.083     1.45e-04
+                          near-contact     B3       0.000   0.028     1.76e-04
+                          near-contact     B4       1.000   1.000     0.00e+00
+                          layered          B0       0.222   0.250     2.08e-04
+                          layered          B2       0.444   0.278     3.85e-05
+                          layered          B3       0.000   0.028     6.11e-04
+                          layered          B4       1.000   1.000     0.00e+00
+                          asymmetric       B0       0.000   0.056     1.77e-04
+                          asymmetric       B2       0.000   0.111     1.69e-04
+                          asymmetric       B3       0.000   0.000     2.09e-04
+                          asymmetric       B4       1.000   1.000     0.00e+00
+
+    每项 F1 都单独计费，joint warm median 4.60 ms/query；共用 receiver step 是公共 reduced
+GN，child GN/Qhat 是 shortlist 之后的 F2。Gamma normalization、source encoder 和失败尝试
+也进入账本。这些 warm 投影时间不含 cold 物理 workspace acquisition。
+
+
+
+                    7    B 的向量标签：什么能够恢复，什么不能
+
+    Measurement label（测量响应标签）是 zF = JF d。Unresolved-current label（未解析电流标签）
+则需要完整 current response，例如 L−1 IU Bd。测量算子有很大的 nullspace，所以即便存了 zF ，也
+不等于存了 full current。
+
+    Gaussian 有 saved fullJ，材料 gauge 和 d 一致时可以直接计算 JF d，没有新增 full-wave RHS。
+voxel 只有 V ∈ R3456×16 与 fullJV；先算
+
+                                         ηV = d − V V + d / ∥d∥ .
+
+只有 ηV ≤ 10−9 才能用 fullJV 的同一组合恢复真响应。当前 voxel directions 的 ηV 在 0.9948–0.9992，
+
+                                                    8
+NN-native current design: Stage 0                                                       3 October 2026
+
+
+几乎全部在探针 span 外；不能把 projection 的响应当 full response。
+
+      另外一个合法渠道是保存的 step/Js：若 receiver x 与 child s 都有同一 frozen state 的 full
+response，JF (s − x) = JF s − JF x。也可以检验 x 是否落在多个合法 saved steps 的 span 内，并只
+在支撑容差通过时作线性组合。全 snapshot 审计中只有 asymmetric late k = 8 receiver 支持这种
+恢复，得到一个 matched 向量。
+
+
+       Object         Legal matched vectors    Missing matched vectors       Full-current labels
+
+       smooth                            101                             0                    0
+       near-contact                      103                             0                    0
+       layered                             0                          96                      0
+       asymmetric                          1                          98                      0
+
+
+一条 voxel 向量不能形成对象级 POD/margin benchmark；它作为单独 inventory 证据保留。scalar
+Qtrue 、step hash、norm、information RHS 都不能补成不存在的 JF d 或 full-current teacher。
+
+
+
+             8 核心推导三：anchor tail 与 source/latent oracle
+
+8.1    把已知部分从学习目标中拿掉
+
+
+                              (JF − JU )d = (JA − JU )d + (JF − JA )d.
+                                                   dA 。直接预测 defect 则
+第一项是内层已知校正，第二项是 anchor tail。预测 tail 后用 ẑ = JA d + ∆z
+              dU 。
+是 ẑ = JU d + ∆z
+
+      tail/direct norm 的中位数 smooth0.3729、near-contact0.4356，说明这个拆解能降低目标幅度。
+但 A 和 U 不嵌套；小幅度不保证所有方向小，也不保证其跨对象 orientation 容易学。
+
+
+8.2    POD 与固定 ridge 的实际步骤
+
+      POD（proper orthogonal decomposition，正交主成分分解）把训练 snapshots 的主要变化写
+成正交方向。每个合法 train 对象提供匹配向量，组成 T = [∆z1 , . . . , ∆zn ]，不减均值；SVD 为
+T = UT ΣVTT 。取前 q = 8, 16, 32 列 Uq 。held-out 最理想的 L2 表示是 Uq UqT ∆z，它是 POD exact-
+latent projection oracle。
+
+      固定 ridge 使用 public source sketches H，用 train-only RMS 做行尺度归一化 Hn ，不设
+intercept。latent training target Z = UqT T ，
+
+                        W = ZHnT (Hn HnT + αI)−1 ,      α = 10−6 σmax (Hn )2 .
+
+实现用等价较小的 dual normal solve。预测 Uq W hn 。固定 state 的 zero/scaling/additivity 成立，因
+为没有 bias 或 direction-dependent 非线性。这个 baseline 的 W 不随 state 变化；若它失败，不能
+单独归罪于 source sketch，也不能据此否定 state-conditioned NN。
+
+
+                                                 9
+NN-native current design: Stage 0                                                3 October 2026
+
+
+      Fold1 只用 smooth101 方向拟合 POD/scaler/ridge，对 near-contact103 方向 test；Fold3 由
+near-contact 训练，对 smooth101 方向 validation。Fold0 没有完整 Gaussian train 对象，Fold2 没
+有 layered 完整 test，Fold3 没有完整 asymmetric test。完整四折 split 是保留的，B 可用 test 只有
+规定的一个 pair；不能改 split 后称完成四对象。
+
+
+8.3    source compression oracle 检查的是信息条件
+
+      本轮的 source 是 projected anchor injection 的 physical-row random sketch，固定 seed 对同
+一物理网格使用同一 encoder，而不把材料坐标编号当跨对象语义。每 illumination 的 complex row
+数为 8/16/32，即总 real features96/192/384。两个 Gaussian 的 physical rows 经核对一致。
+
+      对某个固定 state，记 full 材料坐标到 source sketch 的线性 map 为 H，真 tail operator 为
+TA = JF − JA 。存在某个线性 W 满足 W H = TA 的必要信息条件是
+
+                                            ker H ⊆ ker TA .
+
+如果 H 有 full column rank，就可以在这个固定 gauge 上取 W = TA H + ；这只是 evaluator oracle，
+需要 fullJ，不是 student 可获得的 public 模型。我们计算 TA (I − H + H)d 检查 source 的不可恢复
+部分。
+
+      在 Gaussian 保存的 54 维 real material gauge 里，所有 encoder ranks 的数值 rank 都是 54，
+null-tail error 最大 relative 4.47 × 10−15 。这说明对已存 gauge 的线性 source 诊断没有看到信息损
+失。它没有检查完整 off-Q injection/current，也没有证明小 latent output basis 能泛化。3456 维
+voxel 的任意 material directions 更不能借这个 54 维结果下结论。
+
+
+
+                 9 核心推导四：gain、error radius 与费用门槛
+
+9.1    从 full quadratic objective 推导 gain
+
+      固定 state 的真实二次目标可写为
+
+                                ΦF (s) = 21 ∥r + JF s∥2 + ℓT s + 12 sT Λs.
+
+从 receiver x 移到 child x + d，gain 为 Q = ΦF (x) − ΦF (x + d)。令 u = r + JF x、z = JF d，展开
+得到
+                             Q = −uT z − (ℓ + Λx)T d − 21 (∥z∥2 + dT Λd).
+
+这里所有 inner products 在保存的 physical material/data gauge 中。它是 frozen-state gain，不是
+新跑的 nonlinear reconstruction 质量。
+
+
+9.2    为什么 response error 必须服从实际 margin
+
+      预测 ẑ，误差 e = z − ẑ。在评价侧精确 reference u 下，
+
+                              Q − Q̂ = −(u + ẑ)T e − 12 ∥e∥2 ,
+                            |Q − Q̂| ≤ vϵ + 21 ϵ2 ,    v = ∥u + ẑ∥ , ∥e∥ ≤ ϵ.
+
+
+                                                      10
+NN-native current design: Stage 0                                                                              3 October 2026
+
+
+要保证 gain 下界超过阈值 τ ，需要 m = Q̂ − τ > 0 且 vϵ + ϵ2 /2 < m。解二次不等式的正根，得到
+                                                              p                         2m
+                                                    ϵcrit =       v 2 + 2m − v = √                  .
+                                                                                     v 2 + 2m + v
+
+这里的 Q̂ 使用精确评价侧 u，只将 z 替换为 ẑ；A 中 anchor score 使用 r +JA x，二者不能混同。后一
+个表达式避免 m 很小时两个接近数字相减。在本轮用 actual residual 检查 ∥JF d − ẑ∥ < ϵcrit ，称为
+oracle can skip（反事实可跳过）
+                      。在线缺少这个精确 residual envelope，所以不是已实现 certificate
+或实际跳过。
+
+                                                            Tail POD oracle                  Tail ridge
+                                                           Direct POD oracle              Opportunity gate
+                                                        Matched RHS-halving floor
+
+
+
+
+      Counterfactual skip fraction
+                                      1
+
+                                     0.8
+
+                                     0.6
+
+                                     0.4
+
+                                     0.2
+
+                                      0
+                                           0            8                      16                                   32
+                                                              POD output rank (0: uncorrected)
+
+
+图 2: 同一 18 个 B4 finalists 的误差–margin 结果。横轴 0 为未补偿 reduced response；rank8/16/32
+训练对象 POD 不能增加 tail 分支的 skip count。所有 primary finalists true gain 均超过 floor。
+
+
+                                               Primary test B4              rank8      rank16    rank32
+
+                                               Direct POD oracle               0/18      0/18           0/18
+                                               Anchor-tail POD oracle       10/18       10/18       10/18
+                                               Anchor-tail ridge            10/18        9/18           9/18
+
+
+未补偿 anchor 也为 10/18。rank32 B4 median tail-relative error 仍是 0.8868，median error/critical-
+radius 为 0.5413；中位数通过不代表足够多的动作通过。B2 rank32 tail 只有 7/18。reversed smooth
+的结果是 Fold3 validation，其 tail POD 均为 8/18。
+
+      POD projection 在固定 output subspace 中使 L2 response residual 最小，但 ϵcrit 自身依赖 ẑ；它
+不必最大化所有可能 latent 系数的 skip count。因此 B 的 NO-GO 必须限于本轮 tested POD/ridge
+pipeline，不能声称任意 compensation 机制被数学证明不可能。
+
+
+9.3       约 60% 与 75% 为什么并不矛盾
+
+      每个 shared direction 需要六个 full RHS。令初始化总 RHS 为 I，finalist 验证为 R，理想 skip
+比例为 ρ。若暂不计模型与 refresh，旧费用 I + R，新费用 I + (1 − ρ)R。要求新费用不超过旧费
+用的一半：
+                                               I + (1 − ρ)R ≤ 21 (I + R)       =⇒      ρ ≥ 21 (1 + I/R).
+
+                                                                          11
+NN-native current design: Stage 0                                          3 October 2026
+
+
+历史 A17 workload 为 I = 36×6 = 216、R = 1164，floor 为 59.28%。本次 primary single-decision test
+为 9queries、每 query 两 finalists：I = 54、R = 108，floor 为 75%。用 55.6% 的 oracle opportunity，
+新 ratio 为
+                                    54 + 108(1 − 10/18)
+                                                        = 0.6296.
+                                          54 + 108
+这既没减半，也还没算额外费用。若 refresh/audit/failed RHS 为 E，同样推得 floor 增加 E/R；模
+型/source/cold setup 的 wall 费用还要另加。只说 “少验证一半 finalists” 会遗漏初始化，不能算完
+整流程两倍。
+
+
+9.4    缓存误差与统计边界
+
+      未来连续 learned acceptance 若更新 cached Jx，旧误差会叠加。下一次 exact Jd 只给出新
+direction response，不修复旧 Jx。必须跟踪 cache radius、refresh/audit 以及 selected-finalist 的校
+准分布。四个对象及其相关 moves 不足以自动构成 95% safety calibration。A17 提供 high-fidelity
+numerical labels，没有物理 deterministic error envelopes；本轮所有 skip 都是离线反事实诊断。
+
+
+
+                            10      验证、失败、文献与复现边界
+
+      新写 128 个非 Hermitian complex cases 检查了两侧 defect、Schur tail、anchor decompo-
+sition、phase covariance、ID permutation、一般 gain-error bound 及 exact-u 强化界；identity
+最大 relative residual 9.69 × 10−16 ，gain-bound violation 为 0。四对象 early k = 8 public
+接口通过 phase/permutation 动作一致性和 forbidden-field canary；补偿 source/ridge 通过
+zero/scaling/additivity。这些检查针对已实现解析接口与 ridge，没有证明尚未实现的 NN 架构合
+格。
+
+      原 A18 validation script/config/results 和独立 REFERENCES 原件未提供。我从 merged read-
+ing 版恢复 REFERENCES，另写 equivalent algebra tests，没有复现原版 “128PASS”。第一次 phase
+tester 错用了 SVD 前后的不同 gauge；parser、adapter 和 serialization 错误均修复并保留日志及
+resource cost。最终 16 个 upstream Woodbury units 有 normal residual failure，用同一 normal
+equation 的一次固定 residual correction 降到原 10−10 门槛以下；没有改变 vendor、物理 operator、
+λ 或 jitter。这是等价数值验证，不是新的 solver 研究方向。
+
+      文献提示“小 current correction”、operator correction、derivative compression 已有基础 [1,
+2, 3, 4, 5]。尤其 Lunz 等指出，仅 data-space correction 未必获得 gradient/adjoint 一致性 [3]；本
+轮 fixed-direction gain 通过也不自动扩展成完整 inverse trajectory 保证。certified ROM 另需合法
+error control [6]。三条 ScholarQA queries 部分 HTTP429，但七个 citation verification 全 resolved；
+SOM-Net 方法与 Lunz 第 3–4 节读取 primary full text，其他文献按 abstract/metadata 分级，PEC
+graph 全文细节 OPEN。未作 first-ever 或 exhaustive novelty 结论。
+
+      复现入口 START_HERE.md 指向固定 source、config、query/move IDs 和全部 derived vectors。
+九项 mandatory 审计结果以 CSV/JSON/Markdown 保存；claim/reference/failure ledger 保证三文
+稿共享同一证据。图表有 PNG/SVG 及 CSV，build_report_assets.py 可重画。LaTeX 中的图
+是同一数据内嵌 coordinates，三份文件均可独立编译，不依赖额外图文件。
+
+
+                                                 12
+NN-native current design: Stage 0                                          3 October 2026
+
+
+                        11     最终理解与下一阶段所需最少证据
+
+    A：GO 只意味着建议 tiny pilot。完整字典的 high anchor capture 验证了 candidate bot-
+tleneck；B2 没关闭困难对象缺口。未来 MLP/Set Transformer/GAT/phase-consistent physics-edge
+GNN 须共同输入预算、最多 200k parameters/60epochs、4fold 两 seed、总 GPUoccupation 两小
+时上限；先兑现 near-contact0.70、asymmetric0.85、mean0.85，再检查额外 0.05 或同质量成本减
+半。本轮 config enabled=false。
+
+    B：全范围 INCOMPLETE；当前 Gaussian pipeline 没有额外 margin/cost 空间。需
+要先有 matched voxel JF d 与精确 receiver output 的 provenance，再有一个能改变 train-only out-
+put/margin ceiling 的 state-conditioned 且对 d 线性的 representation。不会因 A 通过而自动训练
+B，也不会为了绕过失败转成 Flow/U-Net 或新 solver。
+
+    所有 actual runs 与 not-run 项目都在 decision ledger。Stage0 完成后停止：new full-wave RHS、
+NN epochs、new nonlinear trajectories、GPUtraining 均为 0；没有统计安全认证、真实在线 skip、
+整流程实测加速、远端发布或自动后续训练。
+
+
+
+                              A 中英文术语与容易混淆的量
+
+ English                       中文             本轮含义
+
+ Material gauge                材料坐标规约         保存的 physical orthonormal tangent 及 fin-
+                                              gerprint；step/ell 不能换 basis 混用。
+ Total regularization          总二次正则          保存的 Λ 包含 prior 与 LM damping；不是只
+                                              用 prior precision。
+ Current embedding             电流嵌入空间         公共 Q 的 128 维 span；不等于完整 current
+                                              空间。
+ Shared material step          共享材料步          六 illumination 共用同一 x, d。
+ Receiver query                接收基起点决策        完整物理上下文加 selected IDs、公共 step、an-
+                                              chor/prior/layout。
+ Dictionary atom ID            字典原子身份         原始物理动作 ID，和 QR/SVD 列编号不同。
+ Shortlist                     短候选池           本轮固定十二 incoming。
+ Anchor                        丰富降阶参照         用于 post-shortlist ranking；full dictionary 昂
+                                              贵参照 B4。
+ One-swap teacher              单交换监督参照        所有合法 drop/add 中的最大正 gain，含 no-
+                                              op；不是全局 optimum。
+ No-op                         不改变当前选择        utility0，本轮 36query 中未成为最优。
+ Cov12                         增益加权覆盖         池内最佳正 gain 总量相对完整字典总量。
+ Gain regret                   增益损失           完整 teacher 最好正 gain 减 shortlist 最好正
+                                              gain。
+ Dressed observation           修饰观测响应         Y = S C̄，扣除了 retained 耦合。
+ Projected injection           投影注入           只从 saved PB/L/U 获得的 current-source 信
+                                              息。
+ Schur complement              Schur 补        一般 complex block elimination；不假设 Her-
+                                              mitian。
+
+
+                                         13
+NN-native current design: Stage 0                                                    3 October 2026
+
+
+
+ English                       中文                    本轮含义
+
+ Phase covariance              相位协变                  N ′ = E ∗ N, Γ′ = E ∗ ΓE, Y ′ = Y E。
+ Measurement defect            测量响应缺陷                ∆z = (JF − JU )d，不是 full current。
+ Inner correction              已知内层校正                (JA − JU )d，本轮无需学习。
+ Anchor tail                   参照剩余误差                (JF − JA )d，richer-model 之后剩余 target。
+ POD                           正交主成分分解               train-only 未中心化 snapshots 的 left singular
+                                                     vectors。
+ Source oracle                 输入信息诊断                evaluator 检查 T (I − H + H)，不是 public pre-
+                                                     dictor。
+ Latent projection oracle      潜在系数表示诊断              fixed training basis 下用真实系数投影 held-
+                                                     out response。
+ Gain margin                   决策收益余量                m = Q̂ − τ ；决定所需 response accuracy。
+ Critical error radius         临界误差半径                ϵcrit ；不是 ensemble sigma 或已有证书。
+ Counterfactual skip           反事实跳过机会               使用 actual offline error，不是实测少跑 RHS。
+ Initialization / refresh      初始化/刷新                建立或修复 cached Jx，必须进入总费用。
+ Data incomplete               数据不完整                 没有合法 labels；与有数据的科学负结果分开。
+
+
+
+
+                                          参考文献
+
+[1] Z. Wei and X. Chen, “Physics-Inspired Convolutional Neural Network for Solving Full-Wave
+   Inverse Scattering Problems,” IEEE TAP, 2019. doi:10.1109/TAP.2019.2922779. Abstract-level
+   evidence in this study.
+
+[2] Y. Liu et al., “SOM-Net: Unrolling the Subspace-based Optimization for Solving Full-wave
+   Inverse Scattering Problems,” 2022. arXiv:2209.03567. Method and Algorithm 1 inspected.
+
+[3] S. Lunz et al., “On Learned Operator Correction in Inverse Problems,” 2020 preprint.
+   arXiv:2005.07069; journal DOI 10.1137/20M1338460. Sections 3–4 inspected.
+
+[4] T. O’Leary-Roseberry et al., “Derivative-Informed Neural Operator: An Eﬀicient Frame-
+   work for High-Dimensional Parametric Derivative Learning,” 2022 preprint, revised 2023.
+   arXiv:2206.10745. Abstract-level evidence.
+
+[5] L. Cao et al., “Residual-based error correction for neural operator accelerated infinite-
+   dimensional Bayesian inverse problems,” 2022 preprint. arXiv:2210.03008. Abstract-level evi-
+   dence.
+
+[6] B. Haasdonk et al., “A new certified hierarchical and adaptive RB-ML-ROM surrogate model
+   for parametrized PDEs,” 2022. arXiv:2204.13454. Abstract-level evidence.
+
+
+
+
+                                                14
+

@@ -1,0 +1,3 @@
+{"k": 4, "direct_status": ["NORMAL_RESIDUAL_FAILED"], "direct_residual": [2.008189338389571e-10], "Schur_status": ["NORMAL_RESIDUAL_FAILED"], "Schur_residual": [1.485640366738102e-10], "core_status": "STABLE_CORE"}
+{"k": 8, "direct_status": ["NORMAL_RESIDUAL_FAILED"], "direct_residual": [2.681657856760741e-10], "Schur_status": ["NORMAL_RESIDUAL_FAILED"], "Schur_residual": [1.6437740368735448e-10], "core_status": "STABLE_CORE"}
+{"k": 16, "direct_status": ["NORMAL_RESIDUAL_FAILED"], "direct_residual": [2.025862450362867e-10], "Schur_status": ["NORMAL_RESIDUAL_FAILED"], "Schur_residual": [2.511706646124066e-10], "core_status": "STABLE_CORE"}

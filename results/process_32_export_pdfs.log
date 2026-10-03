@@ -1,0 +1,3 @@
+{"source": "manuscript/COMPLETE_EXPLANATION_ZH.tex", "pdf": "manuscript/COMPLETE_EXPLANATION_ZH.pdf", "exit_code": 0, "wall_s": 1.0673797079944052, "pdf_present": true, "log": "qa/COMPLETE_EXPLANATION_ZH_export.log"}
+{"source": "manuscript/REPORT_TO_PROF_CHEN_ZH.tex", "pdf": "manuscript/REPORT_TO_PROF_CHEN_ZH.pdf", "exit_code": 0, "wall_s": 0.866495041991584, "pdf_present": true, "log": "qa/REPORT_TO_PROF_CHEN_ZH_export.log"}
+{"source": "manuscript/STAGE0_RESEARCH_EN.tex", "pdf": "manuscript/STAGE0_RESEARCH_EN.pdf", "exit_code": 0, "wall_s": 0.567220083961729, "pdf_present": true, "log": "qa/STAGE0_RESEARCH_EN_export.log"}

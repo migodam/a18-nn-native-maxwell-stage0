@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "files": {
+    "status": "PASS",
+    "manifest_sha256": "c732652ee62c77a677f7e2b2ce879b04fec4844fb71794341a0ba5a59d6ac5a5",
+    "files_rehashed": 558
+  },
+  "A": {
+    "queries": 36,
+    "complete_incoming_tables": 36,
+    "incoming_labels": 5208,
+    "total_drop_add_positions": 47712,
+    "feasible_positions": 43108,
+    "baseline_rows_recomputed_from_saved_utilities": 288,
+    "object_summary_rows": 40,
+    "scope": "Saved incoming teachers and recorded shortlists; no rerun of upstream endpoint solves or Qhat ranking."
+  },
+  "B": {
+    "saved_legal_directions_checked": 205,
+    "complete_Gaussian_directions": 204,
+    "training_only_POD_ridge_refits": 18,
+    "oracle_rows_recomputed": 2856,
+    "matched_summary_rows_checked": 252,
+    "max_gain_bound_violation": 0.0,
+    "source_nullspace_oracle_recomputed": false,
+    "scope": "Refits on saved legal measurement labels. Upstream fullJ/nullspace and original source hashes require their upstream/original files."
+  },
+  "algebra": {
+    "status": "PASS",
+    "cases": 128,
+    "max_errors": {
+      "two_sided_defect": 5.627919591959623e-16,
+      "Schur_tail": 9.687719647243063e-16,
+      "anchor_decomposition": 8.475179069814519e-17,
+      "phase_covariance": 5.33280851248004e-16,
+      "atom_permutation": 0.0,
+      "gain_bound_violation": 0.0,
+      "exact_u_bound_violation": 0.0,
+      "epsilon_crit_equation": 2.17103722142836e-16,
+      "L_non_Hermitian_norm": 1.3213893336426643
+    },
+    "implementation": "NEW_EQUIVALENT_TESTS_NOT_ORIGINAL_A18_REPRODUCTION"
+  },
+  "cpu_s": 0.70201,
+  "new_full_wave_rhs": 0,
+  "NN_training_epochs": 0,
+  "new_nonlinear_trajectories": 0,
+  "scope": "PUBLIC_SAVED_LABEL_DIAGNOSTIC_REPLAY; NOT A NEW PHYSICAL EXPERIMENT OR FULL ORIGINAL-SOURCE REPLAY",
+  "peak_rss_platform_units": 105807872,
+  "rss_units": "bytes on macOS, KiB on Linux; historical Stage0 budget receipts remain separate",
+  "tested_tools_sha256": {
+    "tools/public_audit.py": "4bd67a1c0f2c6858671021dd6dc95ca54e3c7bcaf64abe540126fea3e7e4c679",
+    "verification/verify_stage0_algebra.py": "0443459e438cc2f9e4edf0628c83c6cdd6fc4e8e0e77560762bf9c0cde33a775"
+  },
+  "audited_input_manifest": "provenance/PUBLIC_REPLAY_INPUT_MANIFEST.json",
+  "historical_Stage0_resources_unchanged": true
+}
